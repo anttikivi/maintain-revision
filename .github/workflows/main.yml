@@ -97,7 +97,7 @@ jobs:
     - name: Run linter
       run: npm run lint
     - name: Compile
-      run: npm run prepare
+      run: npm run build && npm run package
     - name: Upload build artefacts
       uses: actions/upload-artifact@v2.1.3
       with:
