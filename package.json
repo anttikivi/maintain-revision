@@ -4,6 +4,7 @@
   "description": "An action keeping a remote development version number up to date for projects",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "ncc build index.js -o dist --source-map"
   },
@@ -22,6 +23,7 @@
     "@actions/exec": "^1.0.4"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.22.3"
+    "@zeit/ncc": "^0.22.3",
+    "eslint": "^7.6.0"
   }
 }
