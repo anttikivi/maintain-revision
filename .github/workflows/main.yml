@@ -93,7 +93,6 @@ jobs:
         PACKAGE_VERSION: ${{ steps.read_package_version.outputs.package_version }}
     - name: Install dependencies
       run: npm install
-      if: steps.cache.outputs.cache-hit != 'true'
     - name: Run linter
       run: npm run lint
     - name: Compile
