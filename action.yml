@@ -1,5 +1,6 @@
 name: 'Maintain revision'
 description: 'Keep a remote development version number up to date for a project'
+author: 'Antti Kivi'
 runs:
   using: 'node12'
   main: 'dist/index.js'
