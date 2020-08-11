@@ -1,0 +1,23 @@
+{
+  "name": "maintain-revision",
+  "version": "0.1.0-dev",
+  "description": "An action keeping a remote development version number up to date for projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anttikivi/maintain-revision.git"
+  },
+  "author": "Antti Kivi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anttikivi/maintain-revision/issues"
+  },
+  "homepage": "https://github.com/anttikivi/maintain-revision#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/exec": "^1.0.4"
+  }
+}
