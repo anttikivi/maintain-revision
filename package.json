@@ -7,7 +7,7 @@
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "ncc build index.js -o dist --source-map"
+    "package": "ncc build lib/ --source-map"
   },
   "repository": {
     "type": "git",
