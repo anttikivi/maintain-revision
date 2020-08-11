@@ -1,11 +1,11 @@
 // Copyright (c) 2020 Antti Kivi
 // Licensed under the MIT License
 
-const core = require("@actions/core");
+import * as core from "@actions/core";
 
-async function run() {
+async function run(): Promise<void> {
   try {
-
+    // TODO
   } catch (error) {
     core.setFailed(error.message);
   }
