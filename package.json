@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "ncc build lib/ --source-map"
@@ -28,6 +30,7 @@
     "@typescript-eslint/parser": "^3.9.0",
     "@zeit/ncc": "^0.22.3",
     "eslint": "^7.6.0",
+    "prettier": "^2.0.5",
     "typescript": "^3.9.7"
   }
 }
