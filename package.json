@@ -2,13 +2,13 @@
   "name": "maintain-revision",
   "version": "0.1.0-dev",
   "description": "An action keeping a remote development version number up to date for projects",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "package": "ncc build lib/ --source-map"
   },
   "repository": {
@@ -26,11 +26,14 @@
     "@actions/exec": "^1.0.4"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.9",
     "@typescript-eslint/eslint-plugin": "^3.9.0",
     "@typescript-eslint/parser": "^3.9.0",
     "@zeit/ncc": "^0.22.3",
     "eslint": "^7.6.0",
+    "jest": "^26.3.0",
     "prettier": "^2.0.5",
+    "ts-jest": "^26.2.0",
     "typescript": "^3.9.7"
   }
 }
