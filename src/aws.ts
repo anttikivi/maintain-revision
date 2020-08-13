@@ -2,6 +2,7 @@
 // Licensed under the MIT License
 
 import * as exec from "@actions/exec";
+import * as io from "@actions/io";
 import * as toolCache from "@actions/tool-cache";
 
 export async function install(): Promise<string> {
@@ -27,6 +28,9 @@ export async function install(): Promise<string> {
         reason => {
           reject(reason);
         }
-      );
+      )
+      .finally(() => {
+        io.rmRF("awscliv2.zip");
+      });
   });
 }
