@@ -99,6 +99,8 @@ jobs:
       run: npm run format-check
     - name: Compile
       run: npm run build && npm run package
+    - name: Run tests
+      run: npm run test
     - name: Upload build artefacts
       uses: actions/upload-artifact@v2.1.3
       with:
