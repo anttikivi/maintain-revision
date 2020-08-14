@@ -4,12 +4,11 @@
   "description": "An action keeping a remote development version number up to date for projects",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && ncc build lib/ --source-map",
     "format": "prettier --write *.js *.ts **/*.ts",
     "format-check": "prettier --check *.js *.ts **/*.ts",
     "lint": "eslint src/**/*.ts",
-    "test": "jest",
-    "package": "ncc build lib/ --source-map"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
