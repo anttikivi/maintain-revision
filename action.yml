@@ -1,6 +1,12 @@
 name: 'Maintain revision'
 description: 'Keep a remote development version number up to date for a project'
 author: 'Antti Kivi'
+inputs:
+  bucket:
+    description: 'The AWS S3 bucket where the remove development version is held'
+    default: 'anthem-workflows'
+  path:
+    description: 'Path to the directory where the version file is'
 runs:
   using: 'node12'
   main: 'dist/index.js'
