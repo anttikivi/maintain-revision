@@ -98,7 +98,7 @@ jobs:
     - name: Check formatting
       run: npm run format-check
     - name: Compile
-      run: npm run build && npm run package
+      run: npm run build
     - name: Run tests
       run: npm run test
     - name: Upload build artefacts
