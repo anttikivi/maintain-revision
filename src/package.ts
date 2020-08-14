@@ -3,13 +3,16 @@
 
 import * as core from "@actions/core";
 
-export async function readPackageVersion(
+export async function readVersion(
   filename: string = "./package.json"
 ): Promise<string> {
+  // TODO Catch errors and reject the promise if the function fails
   return new Promise(resolve => {
     const packageJson = require(filename);
     const version = packageJson.version;
-    core.info("The version number read from the package file is " + version);
+    core.debug(
+      "The version number field read from the package file is " + version
+    );
     resolve(version);
   });
 }
