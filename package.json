@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc && ncc build lib/ --source-map",
-    "format": "prettier --write *.js *.ts **/*.ts",
-    "format-check": "prettier --check *.js *.ts **/*.ts",
+    "format": "prettier --write *.js **/*.ts",
+    "format-check": "prettier --check *.js **/*.ts",
     "lint": "eslint src/**/*.ts",
     "test": "jest"
   },
