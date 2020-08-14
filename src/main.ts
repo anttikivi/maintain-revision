@@ -17,7 +17,9 @@ export async function run(): Promise<void> {
   }
 
   try {
-    // TODO
+    // TODO Add support for project that don't use Node.js
+    const packageVersion = pkg.readVersion();
+    core.debug("The package version is " + packageVersion);
   } catch (error) {
     core.setFailed(error.message);
   }
