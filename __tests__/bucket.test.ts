@@ -8,7 +8,7 @@ test("file exists", async () => {
     "anthem-workflows",
     "anttikivi/maintain_revision/test.txt"
   );
-  expect(exists).toBe(true);
+  expect(exists).toBeTruthy();
 });
 
 test("file doesn't exist", async () => {
@@ -16,7 +16,7 @@ test("file doesn't exist", async () => {
     "anthem-workflows",
     "anttikivi/maintain_revision/not-found.txt"
   );
-  expect(exists).toBe(false);
+  expect(exists).toBeFalsy();
 });
 
 test("file contents got correctly", async () => {
