@@ -46,25 +46,22 @@ export async function run(): Promise<void> {
 
     const fileExists = await bucket.fileExists(bucketName, filePath);
 
-    if (fileExists) {
-      const versionNumber: number = await resolveDevelopmentVersion(
-        bucketName,
-        filePath
-      );
+    const versionNumber: number = fileExists
+      ? await resolveDevelopmentVersion(bucketName, filePath)
+      : 1;
 
-      core.info(
-        "The development version number for the current run is " + versionNumber
-      );
+    core.info(
+      "The development version number for the current run is " + versionNumber
+    );
 
-      const version: string = packageVersion.replace(
-        "-dev",
-        "-dev." + versionNumber
-      );
+    const version: string = packageVersion.replace(
+      "-dev",
+      "-dev." + versionNumber
+    );
 
-      await pkg.writeVersion(packageVersion, version);
+    await pkg.writeVersion(packageVersion, version);
 
-      uploadDevelopmentVersion(bucketName, filePath, versionNumber);
-    }
+    uploadDevelopmentVersion(bucketName, filePath, versionNumber);
   } catch (error) {
     core.setFailed(error.message);
   }
