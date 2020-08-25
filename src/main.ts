@@ -62,6 +62,9 @@ export async function run(): Promise<void> {
     await pkg.writeVersion(packageVersion, version);
 
     uploadDevelopmentVersion(bucketName, filePath, versionNumber);
+
+    core.setOutput("version", version);
+
   } catch (error) {
     core.setFailed(error.message);
   }
