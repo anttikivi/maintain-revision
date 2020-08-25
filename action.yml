@@ -9,6 +9,9 @@ inputs:
   path:
     required: false
     description: 'Path to the directory where the version file is'
+outputs:
+  version:
+    description: 'The full version number of the current build'
 runs:
   using: 'node12'
   main: 'dist/index.js'
