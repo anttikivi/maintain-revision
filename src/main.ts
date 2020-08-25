@@ -61,6 +61,7 @@ export async function run(): Promise<void> {
 
     await pkg.writeVersion(packageVersion, version);
 
+    // TODO Upload the version number as post action
     uploadDevelopmentVersion(bucketName, filePath, versionNumber);
 
     core.setOutput("version", version);
