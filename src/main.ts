@@ -64,7 +64,6 @@ export async function run(): Promise<void> {
     uploadDevelopmentVersion(bucketName, filePath, versionNumber);
 
     core.setOutput("version", version);
-
   } catch (error) {
     core.setFailed(error.message);
   }
