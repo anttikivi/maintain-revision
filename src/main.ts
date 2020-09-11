@@ -65,11 +65,19 @@ export async function run(): Promise<void> {
 
     await pkg.writeVersion(packageVersion, version, packageFile);
 
-    // TODO Upload the version number as post action
-    uploadDevelopmentVersion(bucketName, filePath, versionNumber);
-
     core.setOutput("version", version);
+
+    core.saveState("filePath", filePath);
+    core.saveState("versionNumber", versionNumber);
   } catch (error) {
     core.setFailed(error.message);
   }
+}
+
+export async function upload() {
+  const bucketName = core.getInput("bucket");
+  const filePath = core.getState("filePath");
+  const versionNumber = parseInt(core.getState("versionNumber"));
+
+  uploadDevelopmentVersion(bucketName, filePath, versionNumber);
 }
