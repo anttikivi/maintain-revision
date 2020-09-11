@@ -5,9 +5,6 @@ import * as path from "path";
 import * as core from "@actions/core";
 import * as bucket from "./bucket";
 
-const IS_WINDOWS = process.platform === "win32";
-const IS_MAC = process.platform === "darwin";
-
 const resolveDevelopmentVersion = async (
   bucketName: string,
   path: string
@@ -27,21 +24,12 @@ export const run = async (
   readVersion: Function,
   writeVersion: Function
 ): Promise<void> => {
-  if (IS_MAC) {
-    core.setFailed("Unfortunately Maintain Revision doesn't support macOS yet");
-  } else if (IS_WINDOWS) {
-    core.setFailed(
-      "Unfortunately Maintain Revision doesn't support Windows yet"
-    );
-  }
-
   try {
     const workspace = process.env["GITHUB_WORKSPACE"] as string;
     const versionFile = path.join(workspace, core.getInput("file"));
 
     core.info("Reading local version data from " + versionFile);
 
-    // TODO Add support for project that don't use Node.js
     const projectVersion = await readVersion(versionFile);
 
     core.debug("The package version is " + projectVersion);
