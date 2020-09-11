@@ -35,8 +35,12 @@ export async function run(): Promise<void> {
   }
 
   try {
+    const packageFile = process.env["GITHUB_WORKSPACE"] + "/package.json";
+
+    core.debug("Going to look for the package file from " + packageFile);
+
     // TODO Add support for project that don't use Node.js
-    const packageVersion = await pkg.readVersion();
+    const packageVersion = await pkg.readVersion(packageFile);
     core.debug("The package version is " + packageVersion);
 
     const bucketName = core.getInput("bucket");
@@ -59,7 +63,7 @@ export async function run(): Promise<void> {
       "-dev." + versionNumber
     );
 
-    await pkg.writeVersion(packageVersion, version);
+    await pkg.writeVersion(packageVersion, version, packageFile);
 
     // TODO Upload the version number as post action
     uploadDevelopmentVersion(bucketName, filePath, versionNumber);
