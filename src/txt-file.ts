@@ -4,8 +4,8 @@
 import * as fs from "fs";
 import * as core from "@actions/core";
 
-export async function readVersion(filename: string): Promise<string> {
-  return new Promise((resolve, reject) => {
+export const readVersion = async (filename: string): Promise<string> =>
+  new Promise((resolve, reject) => {
     fs.readFile(filename, "utf8", (err, data) => {
       if (err) {
         core.warning(err);
@@ -16,14 +16,13 @@ export async function readVersion(filename: string): Promise<string> {
       }
     });
   });
-}
 
-export async function writeVersion(
+export const writeVersion = async (
   projectVersion: string,
   newVersion: string,
   filename: string
-): Promise<void> {
-  return new Promise(resolve => {
+): Promise<void> =>
+  new Promise(resolve => {
     fs.readFile(filename, "utf8", (err, data) => {
       if (err) {
         core.warning(err);
@@ -39,4 +38,3 @@ export async function writeVersion(
     });
     resolve();
   });
-}

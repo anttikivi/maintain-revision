@@ -4,9 +4,9 @@
 import * as fs from "fs";
 import * as core from "@actions/core";
 
-export async function readVersion(filename: string): Promise<string> {
-  // TODO Catch errors and reject the promise if the function fails
-  return new Promise(resolve => {
+// TODO Catch errors and reject the promise if the function fails
+export const readVersion = async (filename: string): Promise<string> =>
+  new Promise(resolve => {
     const packageJson = require(filename);
     const version = packageJson.version;
     core.debug(
@@ -14,14 +14,13 @@ export async function readVersion(filename: string): Promise<string> {
     );
     resolve(version);
   });
-}
 
-export async function writeVersion(
+export const writeVersion = async (
   packageVersion: string,
   newVersion: string,
   filename: string
-): Promise<void> {
-  return new Promise(resolve => {
+): Promise<void> =>
+  new Promise(resolve => {
     fs.readFile(filename, "utf8", (err, data) => {
       if (err) {
         core.warning(err);
@@ -37,4 +36,3 @@ export async function writeVersion(
     });
     resolve();
   });
-}
