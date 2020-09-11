@@ -37,7 +37,7 @@ export async function run(): Promise<void> {
   try {
     const packageFile = process.env["GITHUB_WORKSPACE"] + "/package.json";
 
-    core.debug("Going to look for the package file from " + packageFile);
+    core.info("Reading local version data from " + packageFile);
 
     // TODO Add support for project that don't use Node.js
     const packageVersion = await pkg.readVersion(packageFile);
