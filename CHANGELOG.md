@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com), and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [Unreleased]
+
+### Changed
+
+- Style of the project’s code to ES6.
+- Names of the inputs.
+
 ## [0.3.0] - 2020-09-11
 
 ### Added
