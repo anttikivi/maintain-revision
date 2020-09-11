@@ -22,8 +22,8 @@ jobs:
       id: version
       uses: anttikivi/maintain-revision@v0.3.0
       with:
-        project-type: 'json'
-        version-file: 'package.json'
+        project-type: json
+        version-file: package.json
     - name: Cache dependencies
       id: cache
       uses: actions/cache@v2.1.1
