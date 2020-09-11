@@ -20,7 +20,10 @@ jobs:
         node-version: 12.x
     - name: Determine project version
       id: version
-      uses: anttikivi/maintain-revision@v0.2.3
+      uses: anttikivi/maintain-revision@v0.3.0
+      with:
+        project-type: json
+        version-file: package.json
     - name: Cache dependencies
       id: cache
       uses: actions/cache@v2.1.1
