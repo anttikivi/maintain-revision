@@ -4,7 +4,7 @@
   "description": "An action keeping a remote development version number up to date for projects",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc && ncc build lib/ --source-map",
+    "build": "tsc && ncc build -o dist lib/index.js && ncc build -o dist/upload lib/upload/index.js",
     "format": "prettier --write *.js **/*.ts",
     "format-check": "prettier --check *.js **/*.ts",
     "lint": "eslint src/**/*.ts",
