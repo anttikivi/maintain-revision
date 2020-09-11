@@ -37,7 +37,7 @@ export const run = async (
 
   try {
     const workspace = process.env["GITHUB_WORKSPACE"] as string;
-    const versionFile = path.join(workspace, core.getInput("version-file"));
+    const versionFile = path.join(workspace, core.getInput("file"));
 
     core.info("Reading local version data from " + versionFile);
 
