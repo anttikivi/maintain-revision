@@ -4,7 +4,7 @@ author: 'Antti Kivi'
 inputs:
   project-type:
     required: true
-    description: 'The type of the file that contains the version of the project, possible values are \'json\', \'python\', and \'txt\''
+    description: 'The type of the file that contains the version of the project, possible values are \'json\' and \'txt\''
     default: 'json'
   version-file:
     required: false
