@@ -4,14 +4,14 @@
 import * as aws from "aws-sdk";
 import * as core from "@actions/core";
 
-export async function fileExists(
+export const fileExists = async (
   bucketName: string,
   path: string,
   accessKeyId?: string,
   secretAccessKey?: string,
   region?: string
-): Promise<boolean> {
-  return new Promise(resolve => {
+): Promise<boolean> =>
+  new Promise(resolve => {
     const s3 = new aws.S3({
       apiVersion: "2006-03-01",
       accessKeyId:
@@ -39,16 +39,15 @@ export async function fileExists(
       }
     });
   });
-}
 
-export async function readFile(
+export const readFile = async (
   bucketName: string,
   path: string,
   accessKeyId?: string,
   secretAccessKey?: string,
   region?: string
-): Promise<string> {
-  return new Promise(resolve => {
+): Promise<string> =>
+  new Promise(resolve => {
     const s3 = new aws.S3({
       apiVersion: "2006-03-01",
       accessKeyId:
@@ -74,17 +73,16 @@ export async function readFile(
       }
     });
   });
-}
 
-export async function putFile(
+export const putFile = async (
   bucketName: string,
   path: string,
   content: string,
   accessKeyId?: string,
   secretAccessKey?: string,
   region?: string
-): Promise<void> {
-  return new Promise((resolve, reject) => {
+): Promise<void> =>
+  new Promise((resolve, reject) => {
     const s3 = new aws.S3({
       apiVersion: "2006-03-01",
       accessKeyId:
@@ -121,12 +119,10 @@ export async function putFile(
       }
     });
   });
-}
 
-export async function getDefaultPath(version: string): Promise<string> {
-  return new Promise(resolve => {
+export const getDefaultPath = async (version: string): Promise<string> =>
+  new Promise(resolve => {
     const repository = process.env["GITHUB_REPOSITORY"]?.replace("-", "_");
     const path = repository + "/" + version + "_version.txt";
     resolve(path);
   });
-}

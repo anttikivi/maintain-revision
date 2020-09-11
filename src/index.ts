@@ -8,7 +8,7 @@ import * as stateHelper from "./state-helper";
 import * as txt from "./txt-file";
 
 if (!stateHelper.IS_POST) {
-  const projectType = core.getInput("project-type");
+  const projectType = core.getInput("type");
 
   if (projectType === "json") {
     run(json.readVersion, json.writeVersion);

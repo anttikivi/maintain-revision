@@ -1,21 +1,21 @@
-name: 'Maintain revision'
+name: 'Maintain Revision'
 description: 'Keep a remote development version number up to date for a project'
 author: 'Antti Kivi'
 inputs:
-  project-type:
+  type:
+    description: 'The type of the file that contains the version of the project, possible values are json and txt'
     required: true
-    description: 'The type of the file that contains the version of the project, possible values are \'json\' and \'txt\''
     default: 'json'
-  version-file:
-    required: false
+  file:
     description: 'Relative path to the file that contains the version of the project'
+    required: false
   bucket:
-    required: true
     description: 'The AWS S3 bucket where the remove development version is held'
+    required: true
     default: 'anthem-workflows'
   path:
-    required: false
     description: 'Path to the directory where the version file is'
+    required: false
 outputs:
   version:
     description: 'The full version number of the current build'

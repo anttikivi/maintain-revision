@@ -8,27 +8,25 @@ import * as bucket from "./bucket";
 const IS_WINDOWS = process.platform === "win32";
 const IS_MAC = process.platform === "darwin";
 
-async function resolveDevelopmentVersion(
+const resolveDevelopmentVersion = async (
   bucketName: string,
   path: string
-): Promise<number> {
+): Promise<number> => {
   const numberString = await bucket.readFile(bucketName, path);
   const versionNumber: number = parseInt(numberString) + 1;
   return versionNumber;
-}
+};
 
-async function uploadDevelopmentVersion(
+const uploadDevelopmentVersion = async (
   bucketName: string,
   path: string,
   version: number
-): Promise<void> {
-  bucket.putFile(bucketName, path, String(version));
-}
+): Promise<void> => bucket.putFile(bucketName, path, String(version));
 
-export async function run(
+export const run = async (
   readVersion: Function,
   writeVersion: Function
-): Promise<void> {
+): Promise<void> => {
   if (IS_MAC) {
     core.setFailed("Unfortunately Maintain Revision doesn't support macOS yet");
   } else if (IS_WINDOWS) {
@@ -39,7 +37,7 @@ export async function run(
 
   try {
     const workspace = process.env["GITHUB_WORKSPACE"] as string;
-    const versionFile = path.join(workspace, core.getInput("version-file"));
+    const versionFile = path.join(workspace, core.getInput("file"));
 
     core.info("Reading local version data from " + versionFile);
 
@@ -77,12 +75,12 @@ export async function run(
   } catch (error) {
     core.setFailed(error.message);
   }
-}
+};
 
-export async function upload() {
+export const upload = async () => {
   const bucketName = core.getInput("bucket");
   const filePath = core.getState("filePath");
   const versionNumber = parseInt(core.getState("versionNumber"));
 
   uploadDevelopmentVersion(bucketName, filePath, versionNumber);
-}
+};
