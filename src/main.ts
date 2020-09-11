@@ -1,9 +1,9 @@
 // Copyright (c) 2020 Antti Kivi
 // Licensed under the MIT License
 
+import * as path from "path";
 import * as core from "@actions/core";
 import * as bucket from "./bucket";
-import * as pkg from "./package";
 
 const IS_WINDOWS = process.platform === "win32";
 const IS_MAC = process.platform === "darwin";
@@ -25,7 +25,10 @@ async function uploadDevelopmentVersion(
   bucket.putFile(bucketName, path, String(version));
 }
 
-export async function run(): Promise<void> {
+export async function run(
+  readVersion: Function,
+  writeVersion: Function
+): Promise<void> {
   if (IS_MAC) {
     core.setFailed("Unfortunately Maintain Revision doesn't support macOS yet");
   } else if (IS_WINDOWS) {
@@ -35,18 +38,20 @@ export async function run(): Promise<void> {
   }
 
   try {
-    const packageFile = process.env["GITHUB_WORKSPACE"] + "/package.json";
+    const workspace = process.env["GITHUB_WORKSPACE"] as string;
+    const versionFile = path.join(workspace, core.getInput("version-file"));
 
-    core.info("Reading local version data from " + packageFile);
+    core.info("Reading local version data from " + versionFile);
 
     // TODO Add support for project that don't use Node.js
-    const packageVersion = await pkg.readVersion(packageFile);
-    core.debug("The package version is " + packageVersion);
+    const projectVersion = await readVersion(versionFile);
+
+    core.debug("The package version is " + projectVersion);
 
     const bucketName = core.getInput("bucket");
     const pathInput = core.getInput("path");
     const filePath =
-      pathInput == "" ? await pkg.getDefaultPath(packageVersion) : pathInput;
+      pathInput == "" ? await bucket.getDefaultPath(projectVersion) : pathInput;
 
     const fileExists = await bucket.fileExists(bucketName, filePath);
 
@@ -58,18 +63,26 @@ export async function run(): Promise<void> {
       "The development version number for the current run is " + versionNumber
     );
 
-    const version: string = packageVersion.replace(
+    const version: string = projectVersion.replace(
       "-dev",
       "-dev." + versionNumber
     );
 
-    await pkg.writeVersion(packageVersion, version, packageFile);
-
-    // TODO Upload the version number as post action
-    uploadDevelopmentVersion(bucketName, filePath, versionNumber);
+    await writeVersion(projectVersion, version, versionFile);
 
     core.setOutput("version", version);
+
+    core.saveState("filePath", filePath);
+    core.saveState("versionNumber", versionNumber);
   } catch (error) {
     core.setFailed(error.message);
   }
+}
+
+export async function upload() {
+  const bucketName = core.getInput("bucket");
+  const filePath = core.getState("filePath");
+  const versionNumber = parseInt(core.getState("versionNumber"));
+
+  uploadDevelopmentVersion(bucketName, filePath, versionNumber);
 }

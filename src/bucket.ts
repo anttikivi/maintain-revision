@@ -122,3 +122,11 @@ export async function putFile(
     });
   });
 }
+
+export async function getDefaultPath(version: string): Promise<string> {
+  return new Promise(resolve => {
+    const repository = process.env["GITHUB_REPOSITORY"]?.replace("-", "_");
+    const path = repository + "/" + version + "_version.txt";
+    resolve(path);
+  });
+}
