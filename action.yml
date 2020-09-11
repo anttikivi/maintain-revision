@@ -24,3 +24,6 @@ runs:
   main: 'dist/index.js'
   post: 'dist/index.js'
   post-if: 'success()'
+branding:
+  icon: 'tag'
+  color: 'blue'
