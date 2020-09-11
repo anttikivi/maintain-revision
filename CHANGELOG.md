@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 - Input for specifying the type of the project’s version file.
 - Input for specifying path to the project’s version file.
+- Support for text version files.
 
 ### Changed
 
