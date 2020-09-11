@@ -2,6 +2,13 @@ name: 'Maintain revision'
 description: 'Keep a remote development version number up to date for a project'
 author: 'Antti Kivi'
 inputs:
+  project-type:
+    required: true
+    description: 'The type of the file that contains the version of the project, possible values are \'json\', \'python\', and \'txt\''
+    default: 'json'
+  version-file:
+    required: false
+    description: 'Relative path to the file that contains the version of the project'
   bucket:
     required: true
     description: 'The AWS S3 bucket where the remove development version is held'

@@ -2,12 +2,9 @@
 // Licensed under the MIT License
 
 import * as fs from "fs";
-
 import * as core from "@actions/core";
 
-export async function readVersion(
-  filename: string = "./package.json"
-): Promise<string> {
+export async function readVersion(filename: string): Promise<string> {
   // TODO Catch errors and reject the promise if the function fails
   return new Promise(resolve => {
     const packageJson = require(filename);
@@ -22,7 +19,7 @@ export async function readVersion(
 export async function writeVersion(
   packageVersion: string,
   newVersion: string,
-  filename: string = "./package.json"
+  filename: string
 ): Promise<void> {
   return new Promise(resolve => {
     fs.readFile(filename, "utf8", (err, data) => {
@@ -39,13 +36,5 @@ export async function writeVersion(
       }
     });
     resolve();
-  });
-}
-
-export async function getDefaultPath(version: string): Promise<string> {
-  return new Promise(resolve => {
-    const repository = process.env["GITHUB_REPOSITORY"]?.replace("-", "_");
-    const path = repository + "/" + version + "_version.txt";
-    resolve(path);
   });
 }
