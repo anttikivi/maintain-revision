@@ -16,6 +16,10 @@ inputs:
   path:
     description: 'Path to the directory where the version file is'
     required: false
+  upload:
+    description: 'Whether or not the next development version will be uploaded to S3'
+    required: true
+    default: true
 outputs:
   version:
     description: 'The full version number of the current build'

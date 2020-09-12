@@ -66,9 +66,15 @@ export const run = async (
 };
 
 export const upload = async () => {
-  const bucketName = core.getInput("bucket");
-  const filePath = core.getState("filePath");
-  const versionNumber = parseInt(core.getState("versionNumber"));
+  const shouldUpload = core.getInput("upload") === "true";
 
-  uploadDevelopmentVersion(bucketName, filePath, versionNumber);
+  if (shouldUpload) {
+    const bucketName = core.getInput("bucket");
+    const filePath = core.getState("filePath");
+    const versionNumber = parseInt(core.getState("versionNumber"));
+
+    uploadDevelopmentVersion(bucketName, filePath, versionNumber);
+  } else {
+    core.info("Uploading the next development version number is disabled");
+  }
 };
