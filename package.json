@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/anttikivi/maintain-revision#readme",
   "dependencies": {
-    "@actions/core": "^1.2.5",
+    "@actions/core": "^1.2.6",
     "aws-sdk": "^2.759.0"
   },
   "devDependencies": {
