@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ### Added
 
-- Option for disabling the upload of the development version.
+- Option that disables the upload of the development version.
+- Option for reading the version for release deployment.
 
 ## [0.6.0] - 2020-09-11
 
