@@ -6,8 +6,8 @@ We currently support the following versions of Maintain Revision with security u
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.6.x   | :white_check_mark: |
-| < 0.6   | :x:                |
+| 0.7.x   | :white_check_mark: |
+| < 0.7   | :x:                |
 
 Please note that while the project is still in development, older versions aren’t supported for long.
 
