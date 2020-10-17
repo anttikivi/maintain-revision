@@ -27,6 +27,7 @@ export const run = async (
   try {
     const workspace = process.env["GITHUB_WORKSPACE"] as string;
     const versionFile = path.join(workspace, core.getInput("file"));
+    const isRelease = core.getInput("release") === "true";
 
     core.info("Reading local version data from " + versionFile);
 
@@ -34,41 +35,54 @@ export const run = async (
 
     core.debug("The package version is " + projectVersion);
 
-    const bucketName = core.getInput("bucket");
-    const pathInput = core.getInput("path");
-    const filePath =
-      pathInput == "" ? await bucket.getDefaultPath(projectVersion) : pathInput;
+    if (isRelease) {
+      core.setOutput("version", projectVersion);
+    } else {
+      const bucketName = core.getInput("bucket");
+      const pathInput = core.getInput("path");
+      const filePath =
+        pathInput == ""
+          ? await bucket.getDefaultPath(projectVersion)
+          : pathInput;
 
-    const fileExists = await bucket.fileExists(bucketName, filePath);
+      const fileExists = await bucket.fileExists(bucketName, filePath);
 
-    const versionNumber: number = fileExists
-      ? await resolveDevelopmentVersion(bucketName, filePath)
-      : 1;
+      const versionNumber: number = fileExists
+        ? await resolveDevelopmentVersion(bucketName, filePath)
+        : 1;
 
-    core.info(
-      "The development version number for the current run is " + versionNumber
-    );
+      core.info(
+        "The development version number for the current run is " + versionNumber
+      );
 
-    const version: string = projectVersion.replace(
-      "-dev",
-      "-dev." + versionNumber
-    );
+      const version: string = projectVersion.replace(
+        "-dev",
+        "-dev." + versionNumber
+      );
 
-    await writeVersion(projectVersion, version, versionFile);
+      await writeVersion(projectVersion, version, versionFile);
 
-    core.setOutput("version", version);
+      core.saveState("filePath", filePath);
+      core.saveState("versionNumber", versionNumber);
 
-    core.saveState("filePath", filePath);
-    core.saveState("versionNumber", versionNumber);
+      core.setOutput("version", version);
+    }
   } catch (error) {
     core.setFailed(error.message);
   }
 };
 
 export const upload = async () => {
-  const bucketName = core.getInput("bucket");
-  const filePath = core.getState("filePath");
-  const versionNumber = parseInt(core.getState("versionNumber"));
+  const shouldUpload = core.getInput("upload") === "true";
+  const isRelease = core.getInput("release") === "true";
 
-  uploadDevelopmentVersion(bucketName, filePath, versionNumber);
+  if (shouldUpload && !isRelease) {
+    const bucketName = core.getInput("bucket");
+    const filePath = core.getState("filePath");
+    const versionNumber = parseInt(core.getState("versionNumber"));
+
+    uploadDevelopmentVersion(bucketName, filePath, versionNumber);
+  } else {
+    core.info("Uploading the next development version number is disabled");
+  }
 };

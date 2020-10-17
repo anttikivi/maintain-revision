@@ -13,20 +13,20 @@ jobs:
       LOCAL_VERSION_NUMBER_FILE: build_version.txt
     steps:
     - name: Check out the project
-      uses: actions/checkout@v2.3.2
+      uses: actions/checkout@v2.3.3
     - name: Set up Node.js environment
-      uses: actions/setup-node@v2.1.1
+      uses: actions/setup-node@v2.1.2
       with:
         node-version: 12.x
     - name: Determine project version
       id: version
-      uses: anttikivi/maintain-revision@v0.5.2
+      uses: anttikivi/maintain-revision@v0.6.0
       with:
         type: json
         file: package.json
     - name: Cache dependencies
       id: cache
-      uses: actions/cache@v2.1.1
+      uses: actions/cache@v2.1.2
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -42,7 +42,7 @@ jobs:
     - name: Run tests
       run: npm run test
     - name: Upload build artefacts
-      uses: actions/upload-artifact@v2.1.4
+      uses: actions/upload-artifact@v2.2.0
       with:
         name: maintain-revision-${{ steps.version.outputs.version }}
         path: dist/
