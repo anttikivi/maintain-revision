@@ -6,15 +6,13 @@ Maintain Revision is a GitHub Actions action for keeping the remote development 
 
 ## Usage
 
-You can use the current development version of this action by adding the following step to your workflow.
+You can use the latest version of this action by adding the following step to your workflow.
 
 ```yml
-uses: anttikivi/maintain-revision@develop
+uses: anttikivi/maintain-revision@v0.7.0
 ```
 
 See the [documentation for GitHub Actions](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsuses) for more information on how to use actions in your workflows.
-
-Please note that there are no released versions of Maintain Revision yet.
 
 ## Contributing
 
