@@ -21,7 +21,7 @@ inputs:
     required: true
     default: true
   release:
-    description: 'Whether or not check the version number for release , which means that the remote version isn\'t read and uploaded'
+    description: 'Whether or not check the version number for release, which means that the remote version is not read nor uploaded'
     required: false
     default: false
 outputs:
