@@ -20,7 +20,7 @@ jobs:
         node-version: 12.x
     - name: Determine project version
       id: version
-      uses: anttikivi/maintain-revision@v0.6.0
+      uses: anttikivi/maintain-revision@v0.7.1
       with:
         type: json
         file: package.json
