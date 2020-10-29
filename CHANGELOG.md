@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com), and this project adheres to [Semantic Versioning](https://semver.org).
 
-## [Unreleased]
+## [0.8.0] - 2020-10-29
 
 ### Added
 
@@ -113,7 +113,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 - Build scripts and package information using Node.js.
 - Functionality for handling the version number increments in projects that use Node.js.
 
-[unreleased]: https://github.com/anttikivi/maintain-revision/compare/v0.7.1...HEAD
+[unreleased]: https://github.com/anttikivi/maintain-revision/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/anttikivi/maintain-revision/compare/v0.7.1...v0.8.0
 [0.7.1]: https://github.com/anttikivi/maintain-revision/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/anttikivi/maintain-revision/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/anttikivi/maintain-revision/compare/v0.5.2...v0.6.0
