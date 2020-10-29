@@ -39,8 +39,6 @@ jobs:
       run: yarn install
     - name: Run checks
       run: yarn ci-check
-    - name: Check formatting
-      run: npm run format-check
     - name: Compile
       run: npm run build
     - name: Upload build artefacts
