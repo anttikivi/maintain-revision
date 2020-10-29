@@ -5,10 +5,12 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc && ncc build -o dist lib/index.js && ncc build -o dist/upload lib/upload/index.js",
-    "format": "prettier --write *.js **/*.ts",
-    "format-check": "prettier --check *.js **/*.ts",
-    "lint": "eslint src/**/*.ts",
-    "test": "jest"
+    "check-all": "npm-run-all format --parallel lint test",
+    "ci-check": "npm-run-all nit --parallel lint test",
+    "format": "prettier --config .prettierrc.json --write *.js **/*.ts",
+    "nit": "prettier --config .prettierrc.json --list-different *.js **/*.ts",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -33,6 +35,7 @@
     "eslint": "^7.12.1",
     "jest": "^26.6.1",
     "jest-circus": "^26.5.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
     "ts-jest": "^26.4.3",
     "typescript": "^4.0.3"
