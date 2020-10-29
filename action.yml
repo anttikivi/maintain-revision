@@ -3,9 +3,9 @@ description: 'Keep a remote development version number up to date for a project'
 author: 'Antti Kivi'
 inputs:
   type:
-    description: 'The type of the file that contains the version of the project, possible values are json and txt'
+    description: 'The type of the file that contains the version of the project, possible values are npm, json, and txt'
     required: true
-    default: 'json'
+    default: 'npm'
   file:
     description: 'Relative path to the file that contains the version of the project'
     required: false
