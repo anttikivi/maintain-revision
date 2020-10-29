@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## [Unreleased]
 
+### Added
+
+- Code scanning by using CodeQL.
+
 ### Changed
 
 - Project’s package manager to Yarn.
