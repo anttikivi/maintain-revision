@@ -108,8 +108,9 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
-# yarn v2
+# Yarn v2
 .yarn/cache
+.yarn/sdks
 .yarn/unplugged
 .yarn/build-state.yml
 .yarn/install-state.gz
@@ -117,3 +118,6 @@ dist
 
 # TypeScript build files
 lib/
+
+# Visual Studio Code configuration
+.vscode/
