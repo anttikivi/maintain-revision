@@ -1,4 +1,4 @@
-name: "CodeQL"
+name: CodeQL
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
         language: [ 'javascript' ]
 
     steps:
-    - name: Check out the Repository
+    - name: Check out the repository
       uses: actions/checkout@v2.3.3
 
     - name: Initialize CodeQL
@@ -31,5 +31,5 @@ jobs:
     - name: Autobuild
       uses: github/codeql-action/autobuild@v1
 
-    - name: Perform CodeQL Analysis
+    - name: Perform CodeQL analysis
       uses: github/codeql-action/analyze@v1
