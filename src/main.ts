@@ -22,7 +22,8 @@ const uploadDevelopmentVersion = async (
 
 export const run = async (
   readVersion: Function,
-  writeVersion: Function
+  writeVersion: Function,
+  isNpm: boolean = false
 ): Promise<void> => {
   try {
     const workspace = process.env["GITHUB_WORKSPACE"] as string;
@@ -31,7 +32,9 @@ export const run = async (
 
     core.info("Reading local version data from " + versionFile);
 
-    const projectVersion = await readVersion(versionFile);
+    const projectVersion = isNpm
+      ? await readVersion()
+      : await readVersion(versionFile);
 
     core.debug("The package version is " + projectVersion);
 
@@ -60,7 +63,11 @@ export const run = async (
         "-dev." + versionNumber
       );
 
-      await writeVersion(projectVersion, version, versionFile);
+      if (isNpm) {
+        await writeVersion(projectVersion, version);
+      } else {
+        await writeVersion(projectVersion, version, versionFile);
+      }
 
       core.saveState("filePath", filePath);
       core.saveState("versionNumber", versionNumber);

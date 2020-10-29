@@ -6,41 +6,51 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       LOCAL_VERSION_NUMBER_FILE: build_version.txt
+
     steps:
-    - name: Check out the project
+    - name: Check out the repository
       uses: actions/checkout@v2.3.3
+
     - name: Set up Node.js environment
       uses: actions/setup-node@v2.1.2
       with:
         node-version: 12.x
-    - name: Determine project version
+
+    - name: Determine the project’s version
       id: version
-      uses: anttikivi/maintain-revision@v0.6.0
+      uses: anttikivi/maintain-revision@v0.7.1
       with:
         type: json
         file: package.json
+
+    - name: Get Yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
     - name: Cache dependencies
-      id: cache
       uses: actions/cache@v2.1.2
+      id: yarn-cache
       with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: ${{ runner.os }}-node-
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
     - name: Install dependencies
-      run: npm install
-    - name: Run linter
-      run: npm run lint
-    - name: Check formatting
-      run: npm run format-check
+      run: yarn install
+
+    - name: Run checks
+      run: yarn ci-check
+
     - name: Compile
-      run: npm run build
-    - name: Run tests
-      run: npm run test
+      run: yarn build
+
     - name: Upload build artefacts
       uses: actions/upload-artifact@v2.2.0
       with:

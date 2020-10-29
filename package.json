@@ -1,14 +1,16 @@
 {
   "name": "maintain-revision",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "An action keeping a remote development version number up to date for projects",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc && ncc build -o dist lib/index.js && ncc build -o dist/upload lib/upload/index.js",
-    "format": "prettier --write *.js **/*.ts",
-    "format-check": "prettier --check *.js **/*.ts",
-    "lint": "eslint src/**/*.ts",
-    "test": "jest"
+    "check-all": "npm-run-all format --parallel lint test",
+    "ci-check": "npm-run-all nit --parallel lint test",
+    "format": "prettier --config .prettierrc.json --write *.js **/*.ts",
+    "nit": "prettier --config .prettierrc.json --list-different *.js **/*.ts",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -22,19 +24,20 @@
   "homepage": "https://github.com/anttikivi/maintain-revision#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "aws-sdk": "^2.773.0"
+    "aws-sdk": "^2.780.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.10",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
-    "@typescript-eslint/parser": "^3.10.1",
+    "@typescript-eslint/parser": "^4.6.0",
     "@zeit/ncc": "^0.22.3",
-    "eslint": "^7.11.0",
-    "jest": "^26.5.3",
+    "eslint": "^7.12.1",
+    "jest": "^26.6.1",
     "jest-circus": "^26.5.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
-    "ts-jest": "^26.4.1",
+    "ts-jest": "^26.4.3",
     "typescript": "^4.0.3"
   }
 }
