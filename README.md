@@ -9,14 +9,14 @@ Maintain Revision is a GitHub Actions action for keeping the remote development 
 You can use the latest version of this action by adding the following step to your workflow.
 
 ```yml
-uses: anttikivi/maintain-revision@v0.8.1
+uses: anttikivi/maintain-revision@v0.8.2
 ```
 
 See the [documentation for GitHub Actions](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsuses) for more information on how to use actions in your workflows.
 
 ## Build
 
-Before building Maintain Revision yourself, please make sure you have [Node.js](https://nodejs.org), [npm](https://nodejs.org), and [Yarn](https://yarnpkg.com) installed.
+Before building Maintain Revision yourself, please make sure you have [Node.js and npm](https://nodejs.org) installed.
 
 First, clone the GitHub repository of Maintain Revision.
 
@@ -38,11 +38,11 @@ After cloning the source, make sure to change to the cloned directory.
 
 Then install the dependencies for the build.
 
-    yarn install
+    npm install
 
 Finally, build the project.
 
-    yarn build
+    npm run build
 
 The built action is in the `dist` directory.
 
