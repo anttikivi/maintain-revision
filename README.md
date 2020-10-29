@@ -14,6 +14,38 @@ uses: anttikivi/maintain-revision@v0.7.1
 
 See the [documentation for GitHub Actions](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsuses) for more information on how to use actions in your workflows.
 
+## Build
+
+Before building Maintain Revision yourself, please make sure you have [Node.js](https://nodejs.org), [npm](https://nodejs.org), and [Yarn](https://yarnpkg.com) installed.
+
+First, clone the GitHub repository of Maintain Revision.
+
+**Via HTTPS:** If you’re checking out sources as read-only, HTTPS works best.
+
+    git clone https://github.com/anttikivi/maintain-revision.git
+
+**Via SSH:** If you’re planning on regularly making direct commits, cloning over SSH may provide a better experience (it requires [uploading SSH keys to GitHub](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/))
+
+    git clone git@github.com:anttikivi/maintain-revision.git
+
+**Via GitHub CLI:** If you work chiefly with GitHub, using the official [GitHub CLI](https://cli.github.com) may provide the best experience.
+
+    gh repo clone anttikivi/maintain-revision
+
+After cloning the source, make sure to change to the cloned directory.
+
+    cd maintain-revision
+
+Then install the dependencies for the build.
+
+    yarn install
+
+Finally, build the project.
+
+    yarn build
+
+The built action is in the `dist` directory.
+
 ## Contributing
 
 Contributions to Maintain Revision are welcome and encouraged! There are many ways to [contribute](https://github.com/anttikivi/maintain-revision/blob/develop/CONTRIBUTING.md#how-can-i-contribute) to it. You can find the guidelines for contributing in [CONTRIBUTING](CONTRIBUTING.md).
