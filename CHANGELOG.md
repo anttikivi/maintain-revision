@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 ### Added
 
 - Code scanning by using CodeQL.
+- Option to use simpler configuration in projects that use npm.
 
 ### Changed
 
