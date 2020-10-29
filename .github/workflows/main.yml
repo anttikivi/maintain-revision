@@ -24,10 +24,9 @@ jobs:
 
     - name: Determine the project’s version
       id: version
-      uses: anttikivi/maintain-revision@v0.7.1
+      uses: anttikivi/maintain-revision@v0.8.1
       with:
-        type: json
-        file: package.json
+        type: npm
 
     - name: Get Yarn cache directory path
       id: yarn-cache-dir-path
