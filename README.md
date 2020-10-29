@@ -16,7 +16,7 @@ See the [documentation for GitHub Actions](https://docs.github.com/en/actions/re
 
 ## Build
 
-Before building Maintain Revision yourself, please make sure you have [Node.js](https://nodejs.org), [npm](https://nodejs.org), and [Yarn](https://yarnpkg.com) installed.
+Before building Maintain Revision yourself, please make sure you have [Node.js and npm](https://nodejs.org) installed.
 
 First, clone the GitHub repository of Maintain Revision.
 
@@ -38,11 +38,11 @@ After cloning the source, make sure to change to the cloned directory.
 
 Then install the dependencies for the build.
 
-    yarn install
+    npm install
 
 Finally, build the project.
 
-    yarn build
+    npm run build
 
 The built action is in the `dist` directory.
 
