@@ -13,7 +13,7 @@ Please note that while the project is still in development, older versions aren�
 
 ## Reporting a Vulnerability
 
-If you’ve found an vulnerability, please report it to security@visisto.fi.
+If you’ve found an vulnerability, please report it to security@visiosto.fi.
 
 We get back to you as soon as possible, usually within five working days.
 
