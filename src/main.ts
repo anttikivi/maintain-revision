@@ -9,9 +9,14 @@ const resolveDevelopmentVersion = async (
   bucketName: string,
   path: string
 ): Promise<number> => {
-  const numberString = await bucket.readFile(bucketName, path);
-  const versionNumber: number = parseInt(numberString) + 1;
-  return versionNumber;
+  try {
+    const numberString = await bucket.readFile(bucketName, path);
+    const versionNumber: number = parseInt(numberString) + 1;
+    return versionNumber;
+  } catch (err) {
+    console.error(err);
+    return -1;
+  }
 };
 
 const uploadDevelopmentVersion = async (
