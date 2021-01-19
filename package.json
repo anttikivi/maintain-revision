@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anttikivi/maintain-revision.git"
+    "url": "git+https://github.com/visiosto/maintain-revision.git"
   },
   "author": "Antti Kivi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anttikivi/maintain-revision/issues"
+    "url": "https://github.com/visiosto/maintain-revision/issues"
   },
-  "homepage": "https://github.com/anttikivi/maintain-revision#readme",
+  "homepage": "https://github.com/visiosto/maintain-revision#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "aws-sdk": "^2.828.0"

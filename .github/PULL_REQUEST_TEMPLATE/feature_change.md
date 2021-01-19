@@ -6,9 +6,9 @@ Link to the issue that your change relates to. This must be one of the following
 * An open issue with the `triaged` label
 * An open issue with the `accepted` label
 
-To contribute an enhancement that isn’t covered by one of the items above, please follow our guide for suggesting an enhancement: https://github.com/anttikivi/unsung-anthem/blob/develop/CONTRIBUTING.md#suggesting-enhancements.
+To contribute an enhancement that isn’t covered by one of the items above, please follow our guide for suggesting an enhancement: https://github.com/visiosto/unsung-anthem/blob/develop/CONTRIBUTING.md#suggesting-enhancements.
 
-To contribute other changes, you must use a different template. You can see all templates at https://github.com/anttikivi/unsung-anthem/tree/develop/.github/PULL_REQUEST_TEMPLATE.
+To contribute other changes, you must use a different template. You can see all templates at https://github.com/visiosto/unsung-anthem/tree/develop/.github/PULL_REQUEST_TEMPLATE.
 
 ### Description of the Change
 

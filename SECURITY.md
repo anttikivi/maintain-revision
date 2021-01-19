@@ -17,4 +17,4 @@ If you’ve found an vulnerability, please report it to security@visiosto.fi.
 
 We get back to you as soon as possible, usually within five working days.
 
-In your email, please include instructions for reproducing the vulnerability, if possible. Also, please check the [changelog](https://github.com/anttikivi/maintain-revision/blob/develop/CHANGELOG.md) before reporting the vulnerability as it may be already fixed. Don’t disclose the vulnerability publicly before we have got back to you.
+In your email, please include instructions for reproducing the vulnerability, if possible. Also, please check the [changelog](https://github.com/visiosto/maintain-revision/blob/develop/CHANGELOG.md) before reporting the vulnerability as it may be already fixed. Don’t disclose the vulnerability publicly before we have got back to you.

@@ -6,7 +6,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anttikivi/maintain-revision.git"
+    "url": "git+https://github.com/visiosto/maintain-revision.git"
   },
   "author": "Antti Kivi",
   "license": "MIT"
