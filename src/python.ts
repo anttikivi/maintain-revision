@@ -11,12 +11,12 @@ export const readVersion = async (filename: string): Promise<string> =>
   new Promise((resolve, reject) => {
     const python = childProcess.spawn("python", [filename]);
 
-    python.stdout.on("data", (data) => {
+    python.stdout.on("data", data => {
       const result = String.fromCharCode.apply(null, data);
       resolve(result);
     });
 
-    python.stderr.on("data", (data) => {
+    python.stderr.on("data", data => {
       core.warning(data);
       reject(data);
     });
