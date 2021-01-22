@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com), and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [0.9.2] - 2021-01-22
+
+### Fixed
+
+- Comparison that is used to check which S3 path is used.
+
 ## [0.9.1] - 2021-01-22
 
 ### Added
@@ -143,7 +149,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 - Build scripts and package information using Node.js.
 - Functionality for handling the version number increments in projects that use Node.js.
 
-[unreleased]: https://github.com/visiosto/maintain-revision/compare/v0.9.1...HEAD
+[unreleased]: https://github.com/visiosto/maintain-revision/compare/v0.9.2...HEAD
+[0.9.2]: https://github.com/visiosto/maintain-revision/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/visiosto/maintain-revision/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/visiosto/maintain-revision/compare/v0.8.2...v0.9.0
 [0.8.2]: https://github.com/visiosto/maintain-revision/compare/v0.8.1...v0.8.2
