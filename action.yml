@@ -3,25 +3,25 @@ description: 'Keep a remote development version number up to date for a project'
 author: 'Antti Kivi'
 inputs:
   type:
-    description: 'The type of the file that contains the version of the project, possible values are npm, json, and txt'
+    description: 'The type of the file that contains the version of the project, possible values are npm, json, python, and txt'
     required: true
     default: 'npm'
   file:
     description: 'Relative path to the file that contains the version of the project'
     required: false
   bucket:
-    description: 'The AWS S3 bucket where the remove development version is held'
+    description: 'The name of the AWS S3 bucket where the remove development version is held'
     required: true
     default: 'anthem-workflows'
   path:
-    description: 'Path to the directory where the version file is'
+    description: 'Path in the S3 bucket to the directory where the remote version file is'
     required: false
   upload:
-    description: 'Whether or not the next development version will be uploaded to S3'
+    description: 'Whether or not the file which contains the next number for the next development version should be uploaded to S3 so that the next build can use it'
     required: true
     default: true
   release:
-    description: 'Whether or not check the version number for release, which means that the remote version is not read nor uploaded'
+    description: 'Whether or not this build is a release, i.e. the remote development version number is not checked for and the next development version is not uploaded to the remote'
     required: false
     default: false
 outputs:
