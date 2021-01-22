@@ -3,27 +3,34 @@ description: 'Keep a remote development version number up to date for a project'
 author: 'Antti Kivi'
 inputs:
   type:
-    description: 'The type of the file that contains the version of the project, possible values are npm, json, python, and txt'
+    description: 'The type of the file that contains the version of the project, possible values are npm, json, python, and txt.'
     required: true
     default: 'npm'
   file:
-    description: 'Relative path to the file that contains the version of the project'
+    description: 'Relative path to the file that contains the version of the project.'
     required: false
   bucket:
-    description: 'The name of the AWS S3 bucket where the remove development version is held'
+    description: 'The name of the AWS S3 bucket where the remove development version is held.'
     required: true
     default: 'anthem-workflows'
   path:
-    description: 'Path in the S3 bucket to the directory where the remote version file is'
+    description: 'Path in the S3 bucket to the directory where the remote version file is.'
     required: false
   upload:
-    description: 'Whether or not the file which contains the next number for the next development version should be uploaded to S3 so that the next build can use it'
+    description: 'Whether or not the file which contains the next number for the next development version should be uploaded to S3 so that the next build can use it.'
     required: true
     default: true
   release:
-    description: 'Whether or not this build is a release, i.e. the remote development version number is not checked for and the next development version is not uploaded to the remote'
+    description: 'Whether or not this build is a release, i.e. the remote development version number is not checked for and the next development version is not uploaded to the remote.'
     required: false
     default: false
+  suffix:
+    description: 'The suffix of the version where the development version number is appendid to like described by semantic versioning. The suffix given here must not contain the prepended dash or the appended dot.'
+    required: true
+    default: 'dev'
+  variable:
+    description: 'The name of the variable that contains suffix string to be appended to the version. This is used to determine where the development version should be added to in Python projects.'
+    required: false
 outputs:
   version:
     description: 'The full version number of the current build'

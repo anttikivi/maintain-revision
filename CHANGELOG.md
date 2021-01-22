@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## [Unreleased]
 
+### Added
+
+- Parameter for inputting the pre-release suffix of the version separately to the writing functions.
+- Options for adding the suffix and Python variable where the suffix is.
+
 ### Changed
 
 - Action inputs’ descriptions to be more descriptive.

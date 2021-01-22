@@ -48,6 +48,8 @@ export const run = async (
     } else {
       const bucketName = core.getInput("bucket");
       const pathInput = core.getInput("path");
+      const suffix = core.getInput("suffix");
+      const suffixVariable = core.getInput("variable");
       const filePath =
         pathInput == ""
           ? await bucket.getDefaultPath(projectVersion)
