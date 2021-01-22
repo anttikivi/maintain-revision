@@ -16,6 +16,7 @@ inputs:
   path:
     description: 'Path in the S3 bucket to the directory where the remote version file is.'
     required: false
+    default: ''
   upload:
     description: 'Whether or not the file which contains the next number for the next development version should be uploaded to S3 so that the next build can use it.'
     required: true
