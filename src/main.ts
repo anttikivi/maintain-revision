@@ -50,7 +50,7 @@ export const run = async (
       const bucketName = core.getInput("bucket");
       const pathInput = core.getInput("path");
       const suffix = core.getInput("suffix");
-      const suffixVariable = core.getInput("variable");
+      const suffixVariable = core.getInput("suffix-variable");
       const filePath =
         pathInput == ""
           ? await bucket.getDefaultPath(projectVersion)
@@ -74,6 +74,30 @@ export const run = async (
       if (isNpm) {
         await writeVersion(projectVersion, version);
       } else if (isPython) {
+        if (suffix) {
+          const newSuffix = `${suffix}.${versionNumber}`;
+
+          if (suffixVariable) {
+            await writeVersion(
+              projectVersion,
+              version,
+              versionFile,
+              suffix,
+              newSuffix,
+              suffixVariable
+            );
+          } else {
+            await writeVersion(
+              projectVersion,
+              version,
+              versionFile,
+              suffix,
+              newSuffix
+            );
+          }
+        } else {
+          await writeVersion(projectVersion, version, versionFile);
+        }
         await writeVersion(projectVersion, version);
       } else {
         await writeVersion(projectVersion, version, versionFile);

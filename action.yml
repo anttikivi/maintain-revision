@@ -28,7 +28,7 @@ inputs:
     description: 'The suffix of the version where the development version number is appendid to like described by semantic versioning. The suffix given here must not contain the prepended dash or the appended dot.'
     required: true
     default: 'dev'
-  variable:
+  suffix-variable:
     description: 'The name of the variable that contains suffix string to be appended to the version. This is used to determine where the development version should be added to in Python projects.'
     required: false
 outputs:
