@@ -52,7 +52,7 @@ export const run = async (
       const suffix = core.getInput("suffix");
       const suffixVariable = core.getInput("suffix-variable");
       const filePath =
-        pathInput == ""
+        pathInput === ""
           ? await bucket.getDefaultPath(projectVersion)
           : pathInput;
 
