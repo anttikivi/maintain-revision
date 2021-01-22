@@ -120,6 +120,7 @@ export const run = async (
       core.setOutput("version", version);
     }
   } catch (error) {
+    core.debug("There was an error in the run");
     core.setFailed(error.message);
   }
 };
