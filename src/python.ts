@@ -34,7 +34,7 @@ export const writeVersion = async (
 ): Promise<void> =>
   new Promise(resolve => {
     core.debug(`Going to read a file from ${filename}`);
-    fs.readFile(filename, "utf8", (err, data) => {
+    fs.readFile(String(filename), "utf8", (err, data) => {
       if (err) {
         core.warning(err);
       } else {
@@ -47,7 +47,7 @@ export const writeVersion = async (
           const result = data.replace(originalVariable, newVariable);
           core.debug(`The result is ${result}`);
           core.debug(`Going to write to ${filename}`);
-          fs.writeFile(filename, result, "utf8", err => {
+          fs.writeFile(String(filename), result, "utf8", err => {
             if (err) {
               core.warning(err);
             }
@@ -57,7 +57,7 @@ export const writeVersion = async (
           const result = data.replace(projectVersion, newVersion);
           core.debug(`The result is ${result}`);
           core.debug(`Going to write to ${filename}`);
-          fs.writeFile(filename, result, "utf8", err => {
+          fs.writeFile(String(filename), result, "utf8", err => {
             if (err) {
               core.warning(err);
             }
