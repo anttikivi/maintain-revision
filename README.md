@@ -48,9 +48,9 @@ The built action is in the `dist` directory.
 
 ## Contributing
 
-Contributions to Maintain Revision are welcome and encouraged! There are many ways to [contribute](https://github.com/visiosto/maintain-revision/blob/develop/CONTRIBUTING.md#how-can-i-contribute) to it. You can find the guidelines for contributing in [CONTRIBUTING](CONTRIBUTING.md).
+Contributions to Maintain Revision are welcome and encouraged! There are many ways to [contribute](https://github.com/visiosto/.github/blob/main/CONTRIBUTING.md#how-can-i-contribute) to it. You can find the guidelines for contributing in [visiosto/.github/CONTRIBUTING.md](https://github.com/visiosto/.github/blob/main/CONTRIBUTING.md).
 
-This project adheres to the Contributor Covenant [Code of Conduct](https://github.com/visiosto/maintain-revision/blob/develop/CODE_OF_CONDUCT.md). By participating, you’re expected to uphold this code. Please report unacceptable behaviour to antti.kivi@visiosto.fi.
+This project adheres to the Contributor Covenant [Code of Conduct](https://github.com/visiosto/.github/blob/main/CODE_OF_CONDUCT.md). By participating, you’re expected to uphold this code. Please report unacceptable behaviour to antti.kivi@visiosto.fi.
 
 ## Licence
 
