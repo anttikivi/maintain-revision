@@ -9,9 +9,14 @@ const resolveDevelopmentVersion = async (
   bucketName: string,
   path: string
 ): Promise<number> => {
-  const numberString = await bucket.readFile(bucketName, path);
-  const versionNumber: number = parseInt(numberString) + 1;
-  return versionNumber;
+  try {
+    const numberString = await bucket.readFile(bucketName, path);
+    const versionNumber: number = parseInt(numberString) + 1;
+    return versionNumber;
+  } catch (err) {
+    console.error(err);
+    return -1;
+  }
 };
 
 const uploadDevelopmentVersion = async (
@@ -23,7 +28,8 @@ const uploadDevelopmentVersion = async (
 export const run = async (
   readVersion: Function,
   writeVersion: Function,
-  isNpm: boolean = false
+  isNpm: boolean = false,
+  isPython: boolean = false
 ): Promise<void> => {
   try {
     const workspace = process.env["GITHUB_WORKSPACE"] as string;
@@ -43,6 +49,8 @@ export const run = async (
     } else {
       const bucketName = core.getInput("bucket");
       const pathInput = core.getInput("path");
+      const suffix = core.getInput("suffix");
+      const suffixVariable = core.getInput("suffix-variable");
       const filePath =
         pathInput == ""
           ? await bucket.getDefaultPath(projectVersion)
@@ -64,6 +72,32 @@ export const run = async (
       );
 
       if (isNpm) {
+        await writeVersion(projectVersion, version);
+      } else if (isPython) {
+        if (suffix) {
+          const newSuffix = `${suffix}.${versionNumber}`;
+
+          if (suffixVariable) {
+            await writeVersion(
+              projectVersion,
+              version,
+              versionFile,
+              suffix,
+              newSuffix,
+              suffixVariable
+            );
+          } else {
+            await writeVersion(
+              projectVersion,
+              version,
+              versionFile,
+              suffix,
+              newSuffix
+            );
+          }
+        } else {
+          await writeVersion(projectVersion, version, versionFile);
+        }
         await writeVersion(projectVersion, version);
       } else {
         await writeVersion(projectVersion, version, versionFile);

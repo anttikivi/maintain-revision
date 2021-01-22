@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com), and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [0.9.0] - 2021-01-22
+
+### Added
+
+- Elementary support for Python projects.
+- Parameter for inputting the pre-release suffix of the version separately to the writing functions.
+- Options for adding the suffix and Python variable where the suffix is.
+
+### Changed
+
+- Action inputs’ descriptions to be more descriptive.
+
 ## [0.8.2] - 2020-10-29
 
 ### Removed
@@ -125,21 +137,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 - Build scripts and package information using Node.js.
 - Functionality for handling the version number increments in projects that use Node.js.
 
-[unreleased]: https://github.com/anttikivi/maintain-revision/compare/v0.8.2...HEAD
-[0.8.2]: https://github.com/anttikivi/maintain-revision/compare/v0.8.1...v0.8.2
-[0.8.1]: https://github.com/anttikivi/maintain-revision/compare/v0.8.0...v0.8.1
-[0.8.0]: https://github.com/anttikivi/maintain-revision/compare/v0.7.1...v0.8.0
-[0.7.1]: https://github.com/anttikivi/maintain-revision/compare/v0.7.0...v0.7.1
-[0.7.0]: https://github.com/anttikivi/maintain-revision/compare/v0.6.0...v0.7.0
-[0.6.0]: https://github.com/anttikivi/maintain-revision/compare/v0.5.2...v0.6.0
-[0.5.2]: https://github.com/anttikivi/maintain-revision/compare/v0.5.1...v0.5.2
-[0.5.1]: https://github.com/anttikivi/maintain-revision/compare/v0.5.0...v0.5.1
-[0.5.0]: https://github.com/anttikivi/maintain-revision/compare/v0.4.0...v0.5.0
-[0.4.0]: https://github.com/anttikivi/maintain-revision/compare/v0.3.0...v0.4.0
-[0.3.0]: https://github.com/anttikivi/maintain-revision/compare/v0.2.3...v0.3.0
-[0.2.3]: https://github.com/anttikivi/maintain-revision/compare/v0.2.2...v0.2.3
-[0.2.2]: https://github.com/anttikivi/maintain-revision/compare/v0.2.1...v0.2.2
-[0.2.1]: https://github.com/anttikivi/maintain-revision/compare/v0.2.0...v0.2.1
-[0.2.0]: https://github.com/anttikivi/maintain-revision/compare/v0.1.1...v0.2.0
-[0.1.1]: https://github.com/anttikivi/maintain-revision/compare/0.1.0...v0.1.1
-[0.1.0]: https://github.com/anttikivi/maintain-revision/releases/tag/0.1.0
+[unreleased]: https://github.com/visiosto/maintain-revision/compare/v0.9.0...HEAD
+[0.9.0]: https://github.com/visiosto/maintain-revision/compare/v0.8.2...v0.9.0
+[0.8.2]: https://github.com/visiosto/maintain-revision/compare/v0.8.1...v0.8.2
+[0.8.1]: https://github.com/visiosto/maintain-revision/compare/v0.8.0...v0.8.1
+[0.8.0]: https://github.com/visiosto/maintain-revision/compare/v0.7.1...v0.8.0
+[0.7.1]: https://github.com/visiosto/maintain-revision/compare/v0.7.0...v0.7.1
+[0.7.0]: https://github.com/visiosto/maintain-revision/compare/v0.6.0...v0.7.0
+[0.6.0]: https://github.com/visiosto/maintain-revision/compare/v0.5.2...v0.6.0
+[0.5.2]: https://github.com/visiosto/maintain-revision/compare/v0.5.1...v0.5.2
+[0.5.1]: https://github.com/visiosto/maintain-revision/compare/v0.5.0...v0.5.1
+[0.5.0]: https://github.com/visiosto/maintain-revision/compare/v0.4.0...v0.5.0
+[0.4.0]: https://github.com/visiosto/maintain-revision/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/visiosto/maintain-revision/compare/v0.2.3...v0.3.0
+[0.2.3]: https://github.com/visiosto/maintain-revision/compare/v0.2.2...v0.2.3
+[0.2.2]: https://github.com/visiosto/maintain-revision/compare/v0.2.1...v0.2.2
+[0.2.1]: https://github.com/visiosto/maintain-revision/compare/v0.2.0...v0.2.1
+[0.2.0]: https://github.com/visiosto/maintain-revision/compare/v0.1.1...v0.2.0
+[0.1.1]: https://github.com/visiosto/maintain-revision/compare/0.1.0...v0.1.1
+[0.1.0]: https://github.com/visiosto/maintain-revision/releases/tag/0.1.0

@@ -1,6 +1,6 @@
 {
   "name": "maintain-revision",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "An action keeping a remote development version number up to date for projects",
   "main": "lib/index.js",
   "scripts": {
@@ -10,34 +10,35 @@
     "format": "prettier --config .prettierrc.json --write *.js **/*.ts",
     "nit": "prettier --config .prettierrc.json --list-different *.js **/*.ts",
     "test": "jest",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf lib && rm -rf dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anttikivi/maintain-revision.git"
+    "url": "git+https://github.com/visiosto/maintain-revision.git"
   },
   "author": "Antti Kivi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anttikivi/maintain-revision/issues"
+    "url": "https://github.com/visiosto/maintain-revision/issues"
   },
-  "homepage": "https://github.com/anttikivi/maintain-revision#readme",
+  "homepage": "https://github.com/visiosto/maintain-revision#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "aws-sdk": "^2.780.0"
+    "aws-sdk": "^2.828.0"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.14",
-    "@types/node": "^14.11.10",
-    "@typescript-eslint/eslint-plugin": "^4.0.0",
-    "@typescript-eslint/parser": "^4.6.0",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.21",
+    "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "@typescript-eslint/parser": "^4.14.0",
     "@zeit/ncc": "^0.22.3",
-    "eslint": "^7.12.1",
-    "jest": "^26.6.1",
-    "jest-circus": "^26.5.3",
+    "eslint": "^7.18.0",
+    "jest": "^26.6.3",
+    "jest-circus": "^26.6.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.1.2",
-    "ts-jest": "^26.4.3",
-    "typescript": "^4.0.3"
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.1.3"
   }
 }

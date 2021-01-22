@@ -47,7 +47,7 @@ export const readFile = async (
   secretAccessKey?: string,
   region?: string
 ): Promise<string> =>
-  new Promise(resolve => {
+  new Promise((resolve, reject) => {
     const s3 = new aws.S3({
       apiVersion: "2006-03-01",
       accessKeyId:
@@ -67,9 +67,9 @@ export const readFile = async (
     s3.getObject(params, (err, data) => {
       if (err) {
         // TODO
-        resolve(undefined);
+        reject(err.message);
       } else {
-        resolve(data.Body?.toString());
+        resolve(data.Body!.toString());
       }
     });
   });
