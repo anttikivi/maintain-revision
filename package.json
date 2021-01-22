@@ -10,7 +10,8 @@
     "format": "prettier --config .prettierrc.json --write *.js **/*.ts",
     "nit": "prettier --config .prettierrc.json --list-different *.js **/*.ts",
     "test": "jest",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf lib && rm -rf dist"
   },
   "repository": {
     "type": "git",
