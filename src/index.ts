@@ -17,7 +17,7 @@ if (projectType === "json") {
 } else if (projectType === "npm") {
   run(npm.readVersion, npm.writeVersion, true);
 } else if (projectType === "python") {
-  run(python.readVersion, python.writeVersion);
+  run(python.readVersion, python.writeVersion, false, true);
 } else {
   core.error(
     "The selected project type isn't supported. The currently supported " +

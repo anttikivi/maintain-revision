@@ -22,8 +22,7 @@ export const readVersion = async (): Promise<string> =>
 
 export const writeVersion = async (
   packageVersion: string,
-  newVersion: string,
-  suffix: string = ""
+  newVersion: string
 ): Promise<void> =>
   new Promise(resolve => {
     const filename: string = path.join(

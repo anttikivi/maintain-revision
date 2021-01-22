@@ -28,7 +28,8 @@ const uploadDevelopmentVersion = async (
 export const run = async (
   readVersion: Function,
   writeVersion: Function,
-  isNpm: boolean = false
+  isNpm: boolean = false,
+  isPython: boolean = false
 ): Promise<void> => {
   try {
     const workspace = process.env["GITHUB_WORKSPACE"] as string;
@@ -71,6 +72,8 @@ export const run = async (
       );
 
       if (isNpm) {
+        await writeVersion(projectVersion, version);
+      } else if (isPython) {
         await writeVersion(projectVersion, version);
       } else {
         await writeVersion(projectVersion, version, versionFile);

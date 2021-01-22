@@ -29,20 +29,32 @@ export const writeVersion = async (
   projectVersion: string,
   newVersion: string,
   filename: string,
-  suffix: string = ""
+  originalSuffix: string = "",
+  newSuffix: string = "",
+  variable: string = ""
 ): Promise<void> =>
   new Promise(resolve => {
     fs.readFile(filename, "utf8", (err, data) => {
       if (err) {
         core.warning(err);
       } else {
-        const result = data.replace(projectVersion, newVersion);
-
-        fs.writeFile(filename, result, "utf8", err => {
-          if (err) {
-            core.warning(err);
-          }
-        });
+        if (variable) {
+          const originalVariable = `${variable} = "-${originalSuffix}"`;
+          const newVariable = `${variable} = "-${newSuffix}"`;
+          const result = data.replace(originalVariable, newVariable);
+          fs.writeFile(filename, result, "utf8", err => {
+            if (err) {
+              core.warning(err);
+            }
+          });
+        } else {
+          const result = data.replace(projectVersion, newVersion);
+          fs.writeFile(filename, result, "utf8", err => {
+            if (err) {
+              core.warning(err);
+            }
+          });
+        }
       }
     });
     resolve();

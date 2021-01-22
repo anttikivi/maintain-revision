@@ -18,8 +18,7 @@ export const readVersion = async (filename: string): Promise<string> =>
 export const writeVersion = async (
   packageVersion: string,
   newVersion: string,
-  filename: string,
-  suffix: string = ""
+  filename: string
 ): Promise<void> =>
   new Promise(resolve => {
     fs.readFile(filename, "utf8", (err, data) => {
