@@ -13,6 +13,9 @@ export const readVersion = async (filename: string): Promise<string> =>
 
     python.stdout.on("data", data => {
       const result = String.fromCharCode.apply(null, data);
+      core.debug(
+        `The version number field read from the Python file is ${result}`
+      );
       resolve(result);
     });
 
