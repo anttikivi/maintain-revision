@@ -71,13 +71,24 @@ export const run = async (
         "-dev." + versionNumber
       );
 
+      core.debug(`The version for this run is ${version}`);
+
       if (isNpm) {
+        core.debug("Going to write the version to an npm project");
         await writeVersion(projectVersion, version);
       } else if (isPython) {
+        core.debug("Going to write the version to a Python project");
+
         if (suffix) {
+          core.debug(`The version suffix is ${suffix}`);
+
           const newSuffix = `${suffix}.${versionNumber}`;
 
+          core.debug(`The new version suffix is ${newSuffix}`);
+
           if (suffixVariable) {
+            core.debug(`The version suffix variable is ${suffixVariable}`);
+
             await writeVersion(
               projectVersion,
               version,

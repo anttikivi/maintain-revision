@@ -3,7 +3,6 @@
 
 import * as childProcess from "child_process";
 import * as fs from "fs";
-import * as path from "path";
 import * as core from "@actions/core";
 
 // TODO Catch errors and reject the promise if the function fails
@@ -39,16 +38,22 @@ export const writeVersion = async (
         core.warning(err);
       } else {
         if (variable) {
+          core.debug("The suffix variable is set");
           const originalVariable = `${variable} = "-${originalSuffix}"`;
+          core.debug(`The original variable statement is ${originalVariable}`);
           const newVariable = `${variable} = "-${newSuffix}"`;
+          core.debug(`The new variable statement is ${newVariable}`);
           const result = data.replace(originalVariable, newVariable);
+          core.debug(`The result is ${result}`);
           fs.writeFile(filename, result, "utf8", err => {
             if (err) {
               core.warning(err);
             }
           });
         } else {
+          core.debug("The suffix variable is not set");
           const result = data.replace(projectVersion, newVersion);
+          core.debug(`The result is ${result}`);
           fs.writeFile(filename, result, "utf8", err => {
             if (err) {
               core.warning(err);
