@@ -9,7 +9,7 @@ Maintain Revision is a GitHub Actions action for keeping the remote development 
 You can use the latest version of this action by adding the following step to your workflow.
 
 ```yml
-uses: visiosto/maintain-revision@v0.9.0
+uses: visiosto/maintain-revision@v0.9.1
 ```
 
 See the [documentation for GitHub Actions](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsuses) for more information on how to use actions in your workflows.
