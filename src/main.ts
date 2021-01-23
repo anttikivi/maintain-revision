@@ -4,20 +4,7 @@
 import * as path from "path";
 import * as core from "@actions/core";
 import * as bucket from "./bucket";
-
-const resolveDevelopmentVersion = async (
-  bucketName: string,
-  path: string
-): Promise<number> => {
-  try {
-    const numberString = await bucket.readFile(bucketName, path);
-    const versionNumber: number = parseInt(numberString) + 1;
-    return versionNumber;
-  } catch (err) {
-    console.error(err);
-    return -1;
-  }
-};
+import * as version from "./version";
 
 const uploadDevelopmentVersion = async (
   bucketName: string,
@@ -34,7 +21,8 @@ export const run = async (
   try {
     const workspace = process.env["GITHUB_WORKSPACE"] as string;
     const versionFile = path.join(workspace, core.getInput("file"));
-    const isRelease = core.getInput("release") === "true";
+    const shouldDownload = core.getInput("download") === "true";
+    const manualRevisionNumber = version.resolveManualRevisionNumber();
 
     core.info("Reading local version data from " + versionFile);
 
@@ -44,8 +32,9 @@ export const run = async (
 
     core.debug("The package version is " + projectVersion);
 
-    if (isRelease) {
+    if (!shouldDownload && !manualRevisionNumber) {
       core.setOutput("version", projectVersion);
+      core.setOutput("revision-number", 0);
     } else {
       const bucketName = core.getInput("bucket");
       const pathInput = core.getInput("path");
@@ -56,26 +45,25 @@ export const run = async (
           ? await bucket.getDefaultPath(projectVersion)
           : pathInput;
 
-      const fileExists = await bucket.fileExists(bucketName, filePath);
-
-      const versionNumber: number = fileExists
-        ? await resolveDevelopmentVersion(bucketName, filePath)
-        : 1;
+      const versionNumber = await version.resolveDevelopmentVersion(
+        bucketName,
+        filePath
+      );
 
       core.info(
         "The development version number for the current run is " + versionNumber
       );
 
-      const version: string = projectVersion.replace(
+      const fullVersion: string = projectVersion.replace(
         "-dev",
         "-dev." + versionNumber
       );
 
-      core.debug(`The version for this run is ${version}`);
+      core.debug(`The version for this run is ${fullVersion}`);
 
       if (isNpm) {
         core.debug("Going to write the version to an npm project");
-        await writeVersion(projectVersion, version);
+        await writeVersion(projectVersion, fullVersion);
       } else if (isPython) {
         core.debug("Going to write the version to a Python project");
 
@@ -91,7 +79,7 @@ export const run = async (
 
             await writeVersion(
               projectVersion,
-              version,
+              fullVersion,
               versionFile,
               suffix,
               newSuffix,
@@ -100,24 +88,24 @@ export const run = async (
           } else {
             await writeVersion(
               projectVersion,
-              version,
+              fullVersion,
               versionFile,
               suffix,
               newSuffix
             );
           }
         } else {
-          await writeVersion(projectVersion, version, versionFile);
+          await writeVersion(projectVersion, fullVersion, versionFile);
         }
-        await writeVersion(projectVersion, version);
+        await writeVersion(projectVersion, fullVersion);
       } else {
-        await writeVersion(projectVersion, version, versionFile);
+        await writeVersion(projectVersion, fullVersion, versionFile);
       }
 
       core.saveState("filePath", filePath);
       core.saveState("versionNumber", versionNumber);
 
-      core.setOutput("version", version);
+      core.setOutput("version", fullVersion);
     }
   } catch (error) {
     core.debug("There was an error in the run");
@@ -127,9 +115,8 @@ export const run = async (
 
 export const upload = async () => {
   const shouldUpload = core.getInput("upload") === "true";
-  const isRelease = core.getInput("release") === "true";
 
-  if (shouldUpload && !isRelease) {
+  if (shouldUpload) {
     const bucketName = core.getInput("bucket");
     const filePath = core.getState("filePath");
     const versionNumber = parseInt(core.getState("versionNumber"));
