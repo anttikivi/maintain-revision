@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com), and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [Unreleased]
+
+### Added
+
+- Input for disabling the download of the revision number from the remote file.
+- Input for giving the revision number manually.
+- Output that contains the revision number that is used.
+
+### Removed
+
+- Input for telling whether the build is release.
+
 ## [0.9.5] - 2021-01-23
 
 ### Added
