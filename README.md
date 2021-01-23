@@ -2,7 +2,7 @@
 
 ![Main workflow](https://github.com/visiosto/maintain-revision/workflows/Main%20workflow/badge.svg)
 
-Maintain Revision is a GitHub Actions action for keeping the remote development version numbers of [Obliging Ode](https://github.com/visiosto/unsung-anthem), [Unsung Anthem](https://github.com/visiosto/unsung-anthem), and their related projects up to date. It reads and sets the version for the current run of the projects on GitHub Actions by reading the last development version number from S3 and uploads the new development version to the same S3 bucket.
+Maintain Revision is a GitHub Actions action for keeping the remote development version numbers of projects up to date. It sets the version for the current run of the project on GitHub Actions by reading the last development version number from S3 and uploads the new development version to the same S3 bucket.
 
 ## Usage
 
