@@ -1,6 +1,6 @@
 name: 'Maintain Revision'
 description: 'Keep a remote development version number up to date for a project'
-author: 'Antti Kivi'
+author: 'Visiosto oy'
 inputs:
   type:
     description: 'The type of the file that contains the version of the project, possible values are npm, json, python, and txt.'
