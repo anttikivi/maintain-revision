@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 ### Removed
 
 - Input for telling whether the build is release.
+- Some community health files from this repository as they were moved to `visiosto/.github`.
 
 ## [0.9.5] - 2021-01-23
 
