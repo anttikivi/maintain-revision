@@ -18,8 +18,8 @@ inputs:
     required: false
   download:
     description: 'Whether or not the file which contains the version number for this build should be downloaded from S3 for this build. If this is not set to true and the revision is not given manually, the replacement is not done.'
-    required: false
-    default: false
+    required: true
+    default: true
   upload:
     description: 'Whether or not the file which contains the next number for the next development version should be uploaded to S3 so that the next build can use it.'
     required: true
@@ -32,7 +32,7 @@ inputs:
     description: 'The name of the variable that contains suffix string to be appended to the version. This is used to determine where the development version should be added to in Python projects.'
     required: false
   revision-number:
-    description: 'Manually set the revision number for the current build.'
+    description: 'Manually set the revision number for the current build. Please note that the value of this cannot be 0.'
     required: false
 outputs:
   version:

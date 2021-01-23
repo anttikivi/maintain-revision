@@ -26,6 +26,13 @@ export const run = async (
 
     core.info("Reading local version data from " + versionFile);
 
+    core.debug(`The workspace of this run is ${workspace}`);
+
+    shouldDownload
+      ? core.debug("The revision number should be downloaded from the remote")
+      : core.debug("The revision number won't be downloaded from the remote");
+    core.debug(`The manual revision number is set to ${manualRevisionNumber}`);
+
     const projectVersion = isNpm
       ? await readVersion()
       : await readVersion(versionFile);
@@ -33,6 +40,7 @@ export const run = async (
     core.debug("The package version is " + projectVersion);
 
     if (!shouldDownload && !manualRevisionNumber) {
+      core.debug("The revision number won't be set to the project");
       core.setOutput("version", projectVersion);
       core.setOutput("revision-number", 0);
     } else {
@@ -106,6 +114,7 @@ export const run = async (
       core.saveState("versionNumber", versionNumber);
 
       core.setOutput("version", fullVersion);
+      core.setOutput("revision-number", versionNumber);
     }
   } catch (error) {
     core.debug("There was an error in the run");
