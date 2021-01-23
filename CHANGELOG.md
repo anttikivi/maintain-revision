@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com), and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [0.10.1] - 2021-01-23
+
+### Added
+
+- More debug logging for the inputs of the action.
+- Documentation for the restrictions of the manual revision number.
+
+### Fixed
+
+- Default value for downloading the revision number from `false` to `true`.
+
 ## [0.10.0] - 2021-01-23
 
 ### Added
@@ -184,7 +195,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 - Build scripts and package information using Node.js.
 - Functionality for handling the version number increments in projects that use Node.js.
 
-[unreleased]: https://github.com/visiosto/maintain-revision/compare/v0.10.0...HEAD
+[unreleased]: https://github.com/visiosto/maintain-revision/compare/v0.10.1...HEAD
+[0.10.1]: https://github.com/visiosto/maintain-revision/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/visiosto/maintain-revision/compare/v0.9.5...v0.10.0
 [0.9.5]: https://github.com/visiosto/maintain-revision/compare/v0.9.4...v0.9.5
 [0.9.4]: https://github.com/visiosto/maintain-revision/compare/v0.9.3...v0.9.4
