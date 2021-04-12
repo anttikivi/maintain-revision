@@ -50,7 +50,7 @@ jobs:
       run: npm run build
 
     - name: Upload build artefacts
-      uses: actions/upload-artifact@v2.2.2
+      uses: actions/upload-artifact@v2.2.3
       with:
         name: maintain-revision-${{ steps.version.outputs.version }}
         path: dist/
