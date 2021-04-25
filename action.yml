@@ -12,7 +12,6 @@ inputs:
   bucket:
     description: 'The name of the AWS S3 bucket where the remove development version is held.'
     required: true
-    default: 'workflows'
   path:
     description: 'Path in the S3 bucket to the directory where the remote version file is.'
     required: false
