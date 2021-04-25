@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## [Unreleased]
 
+### Changed
+
+- Default name of the bucket.
+
 ## [0.10.1] - 2021-01-23
 
 ### Added
