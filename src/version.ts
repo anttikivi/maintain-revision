@@ -1,24 +1,20 @@
 // Copyright (c) 2021 Visiosto oy
 // Licensed under the MIT License
 
-import * as core from "@actions/core";
-import * as bucket from "./bucket";
+import * as core from '@actions/core';
+import * as bucket from './bucket';
 
 export const resolveManualRevisionNumber = async (): Promise<number> =>
-  core.getInput("revision-number")
-    ? parseInt(core.getInput("revision-number"))
-    : 0;
+  core.getInput('revision-number') ? parseInt(core.getInput('revision-number')) : 0;
 
 export const resolveDevelopmentVersion = async (
   bucketName: string,
-  path: string
+  path: string,
 ): Promise<number> => {
   try {
-    const download: boolean = core.getInput("download") === "true";
-    const manualNumberInput: string = core.getInput("revision-number");
-    const manualNumber: number = manualNumberInput
-      ? parseInt(manualNumberInput)
-      : 0;
+    const download: boolean = core.getInput('download') === 'true';
+    const manualNumberInput: string = core.getInput('revision-number');
+    const manualNumber: number = manualNumberInput ? parseInt(manualNumberInput) : 0;
 
     if (!download || manualNumber) {
       return manualNumber;
