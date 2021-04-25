@@ -1,16 +1,16 @@
 {
   "name": "maintain-revision",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "description": "An action keeping a remote development version number up to date for projects",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc && ncc build -o dist lib/index.js && ncc build -o dist/upload lib/upload/index.js",
-    "check-all": "npm-run-all format --parallel lint test",
-    "ci-check": "npm-run-all nit --parallel lint test",
+    "check-all": "npm-run-all format lint",
+    "ci-check": "npm-run-all nit lint",
     "format": "prettier --config .prettierrc.json --write *.js **/*.ts",
     "nit": "prettier --config .prettierrc.json --list-different *.js **/*.ts",
     "test": "jest",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint --ext .js,.ts .",
     "clean": "rm -rf lib && rm -rf dist"
   },
   "repository": {
@@ -25,20 +25,27 @@
   "homepage": "https://github.com/visiosto/maintain-revision#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "aws-sdk": "^2.828.0"
+    "aws-sdk": "^2.878.0"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.20",
-    "@types/node": "^14.14.21",
-    "@typescript-eslint/eslint-plugin": "^4.14.0",
-    "@typescript-eslint/parser": "^4.14.0",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^14.14.37",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.15.2",
     "@zeit/ncc": "^0.22.3",
-    "eslint": "^7.18.0",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-node": "^0.3.4",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.5",
+    "eslint-plugin-prettier": "^3.4.0",
     "jest": "^26.6.3",
     "jest-circus": "^26.6.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
-    "ts-jest": "^26.4.4",
-    "typescript": "^4.1.3"
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.3"
   }
 }
