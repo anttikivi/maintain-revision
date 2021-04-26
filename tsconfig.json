@@ -9,5 +9,6 @@
     "noImplicitAny": true,
     "esModuleInterop": true
   },
-  "exclude": ["__tests__", "lib", "node_modules", "**/*.test.ts"]
+  "exclude": ["lib", "node_modules", "**/*.test.ts"],
+  "include": [".eslintrc.js"]
 }

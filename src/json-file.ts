@@ -8,8 +8,8 @@ import * as core from '@actions/core';
 export const readVersion = async (filename: string): Promise<string> =>
   new Promise((resolve) => {
     const versionJson = require(filename);
-    const version = versionJson.version;
-    core.debug('The version number field read from the package file is ' + version);
+    const { version } = versionJson;
+    core.debug(`The version number field read from the package file is ${version}`);
     resolve(version);
   });
 

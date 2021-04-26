@@ -19,12 +19,12 @@ export const run = async (
   isPython: boolean = false,
 ): Promise<void> => {
   try {
-    const workspace = process.env['GITHUB_WORKSPACE'] as string;
+    const workspace = process.env.GITHUB_WORKSPACE as string;
     const versionFile = path.join(workspace, core.getInput('file'));
     const shouldDownload = core.getInput('download') === 'true';
     const manualRevisionNumber = version.resolveManualRevisionNumber();
 
-    core.info('Reading local version data from ' + versionFile);
+    core.info(`Reading local version data from ${versionFile}`);
 
     core.debug(`The workspace of this run is ${workspace}`);
 
@@ -35,7 +35,7 @@ export const run = async (
 
     const projectVersion = isNpm ? await readVersion() : await readVersion(versionFile);
 
-    core.debug('The package version is ' + projectVersion);
+    core.debug(`The package version is ${projectVersion}`);
 
     if (!shouldDownload && !manualRevisionNumber) {
       core.debug("The revision number won't be set to the project");
@@ -50,9 +50,9 @@ export const run = async (
 
       const versionNumber = await version.resolveDevelopmentVersion(bucketName, filePath);
 
-      core.info('The development version number for the current run is ' + versionNumber);
+      core.info(`The development version number for the current run is ${versionNumber}`);
 
-      const fullVersion: string = projectVersion.replace('-dev', '-dev.' + versionNumber);
+      const fullVersion: string = projectVersion.replace('-dev', `-dev.${versionNumber}`);
 
       core.debug(`The version for this run is ${fullVersion}`);
 

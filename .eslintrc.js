@@ -32,11 +32,7 @@ module.exports = {
     },
   },
   rules: {
-    'import/extensions': [
-      'error',
-      'always',
-      { js: 'never', ts: 'never' },
-    ],
+    'import/extensions': ['error', 'always', { js: 'never', ts: 'never' }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-sync': 'off',
     'no-use-before-define': 'off',
