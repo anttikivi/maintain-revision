@@ -1,18 +1,13 @@
 // Copyright (c) 2020 Antti Kivi
 // Licensed under the MIT License
 
-import fs from 'fs';
-import path from 'path';
-import core from '@actions/core';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as core from '@actions/core';
+import * as jsonFile from './json-file';
 
 // TODO Catch errors and reject the promise if the function fails
-export const readVersion = async (): Promise<string> =>
-  new Promise((resolve) => {
-    const filename: string = path.join(process.env.GITHUB_WORKSPACE as string, 'package.json');
-    const { version } = JSON.parse(fs.readFileSync(filename, 'utf8'));
-    core.debug(`The version number field read from the package file is ${version}`);
-    resolve(version);
-  });
+export const readVersion = async (): Promise<string> => jsonFile.readVersion('package.json');
 
 export const writeVersion = async (packageVersion: string, newVersion: string): Promise<void> =>
   new Promise((resolve) => {
