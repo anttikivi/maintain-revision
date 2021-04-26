@@ -1,13 +1,12 @@
 {
+  "include": ["./src/**/*", "./*", "./__tests__/**/*", ".eslintrc.js"],
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "outDir": "./lib",
-    "rootDir": "./src",
     "sourceMap": true,
     "strict": true,
     "noImplicitAny": true,
-    "esModuleInterop": true
-  },
-  "exclude": ["lib", "node_modules", "**/*.test.ts"]
+    "esModuleInterop": true,
+    "noEmit": true
+  }
 }
