@@ -23,15 +23,15 @@ export const writeVersion = async (
   filename: string,
 ): Promise<void> =>
   new Promise((resolve) => {
-    fs.readFile(filename, 'utf8', (err, data) => {
-      if (err) {
-        core.warning(err);
+    fs.readFile(filename, 'utf8', (readError, data) => {
+      if (readError) {
+        core.warning(readError);
       } else {
         const result = data.replace(projectVersion, newVersion);
 
-        fs.writeFile(filename, result, 'utf8', (err) => {
-          if (err) {
-            core.warning(err);
+        fs.writeFile(filename, result, 'utf8', (writeError) => {
+          if (writeError) {
+            core.warning(writeError);
           }
         });
       }

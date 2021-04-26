@@ -10,7 +10,6 @@ module.exports = {
   extends: [
     'airbnb',
     'airbnb-typescript',
-    'airbnb/hooks',
     'plugin:jest/recommended',
     'plugin:prettier/recommended',
     'prettier',
@@ -21,11 +20,14 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: 12,
-    project: './tsconfig.json',
+    project: './tsconfig.eslint.json',
     sourceType: 'module',
   },
   plugins: ['jest', 'prettier', '@typescript-eslint'],
   settings: {
+    react: {
+      version: 'latest',
+    },
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -33,11 +35,7 @@ module.exports = {
     },
   },
   rules: {
-    'import/extensions': [
-      'error',
-      'always',
-      { js: 'never', ts: 'never' },
-    ],
+    'import/extensions': ['error', 'always', { js: 'never', ts: 'never' }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-sync': 'off',
     'no-use-before-define': 'off',

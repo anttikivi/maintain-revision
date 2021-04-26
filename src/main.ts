@@ -8,9 +8,9 @@ import * as version from './version';
 
 const uploadDevelopmentVersion = async (
   bucketName: string,
-  path: string,
-  version: number,
-): Promise<void> => bucket.putFile(bucketName, path, String(version));
+  filePath: string,
+  versionNumber: number,
+): Promise<void> => bucket.putFile(bucketName, filePath, String(versionNumber));
 
 export const run = async (
   readVersion: Function,
@@ -19,23 +19,26 @@ export const run = async (
   isPython: boolean = false,
 ): Promise<void> => {
   try {
-    const workspace = process.env['GITHUB_WORKSPACE'] as string;
+    const workspace = process.env.GITHUB_WORKSPACE as string;
     const versionFile = path.join(workspace, core.getInput('file'));
     const shouldDownload = core.getInput('download') === 'true';
     const manualRevisionNumber = version.resolveManualRevisionNumber();
 
-    core.info('Reading local version data from ' + versionFile);
+    core.info(`Reading local version data from ${versionFile}`);
 
     core.debug(`The workspace of this run is ${workspace}`);
 
-    shouldDownload
-      ? core.debug('The revision number should be downloaded from the remote')
-      : core.debug("The revision number won't be downloaded from the remote");
+    if (shouldDownload) {
+      core.debug('The revision number should be downloaded from the remote');
+    } else {
+      core.debug("The revision number won't be downloaded from the remote");
+    }
+
     core.debug(`The manual revision number is set to ${manualRevisionNumber}`);
 
     const projectVersion = isNpm ? await readVersion() : await readVersion(versionFile);
 
-    core.debug('The package version is ' + projectVersion);
+    core.debug(`The package version is ${projectVersion}`);
 
     if (!shouldDownload && !manualRevisionNumber) {
       core.debug("The revision number won't be set to the project");
@@ -50,9 +53,9 @@ export const run = async (
 
       const versionNumber = await version.resolveDevelopmentVersion(bucketName, filePath);
 
-      core.info('The development version number for the current run is ' + versionNumber);
+      core.info(`The development version number for the current run is ${versionNumber}`);
 
-      const fullVersion: string = projectVersion.replace('-dev', '-dev.' + versionNumber);
+      const fullVersion: string = projectVersion.replace('-dev', `-dev.${versionNumber}`);
 
       core.debug(`The version for this run is ${fullVersion}`);
 
@@ -109,7 +112,7 @@ export const upload = async () => {
   if (shouldUpload) {
     const bucketName = core.getInput('bucket');
     const filePath = core.getState('filePath');
-    const versionNumber = parseInt(core.getState('versionNumber'));
+    const versionNumber = parseInt(core.getState('versionNumber'), 10);
 
     uploadDevelopmentVersion(bucketName, filePath, versionNumber);
   } else {
