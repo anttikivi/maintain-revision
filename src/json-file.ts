@@ -1,9 +1,9 @@
 // Copyright (c) 2020 Antti Kivi
 // Licensed under the MIT License
 
-import * as fs from 'fs';
-import * as path from 'path';
-import * as core from '@actions/core';
+import fs from 'fs';
+import path from 'path';
+import core from '@actions/core';
 
 // TODO Catch errors and reject the promise if the function fails
 export const readVersion = async (filename: string): Promise<string> =>

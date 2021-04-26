@@ -1,8 +1,8 @@
 // Copyright (c) 2020 Antti Kivi
 // Licensed under the MIT License
 
-import * as aws from 'aws-sdk';
-import * as core from '@actions/core';
+import aws from 'aws-sdk';
+import core from '@actions/core';
 
 export const fileExists = async (
   bucketName: string,

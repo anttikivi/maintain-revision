@@ -1,8 +1,8 @@
 // Copyright (c) 2020 Antti Kivi
 // Licensed under the MIT License
 
-import * as path from 'path';
-import * as core from '@actions/core';
+import path from 'path';
+import core from '@actions/core';
 import * as bucket from './bucket';
 import * as version from './version';
 

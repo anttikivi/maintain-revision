@@ -1,9 +1,9 @@
 // Copyright (c) 2021 Antti Kivi
 // Licensed under the MIT License
 
-import * as childProcess from 'child_process';
-import * as fs from 'fs';
-import * as core from '@actions/core';
+import childProcess from 'child_process';
+import fs from 'fs';
+import core from '@actions/core';
 
 // TODO Catch errors and reject the promise if the function fails
 export const readVersion = async (filename: string): Promise<string> =>
