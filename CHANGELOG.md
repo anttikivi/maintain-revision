@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 ### Changed
 
 - Project to use Yarn Classic instead of npm.
+- JSON files to be read using `fs` instead of requiring them.
 
 ### Removed
 
