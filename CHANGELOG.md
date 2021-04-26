@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 ### Removed
 
 - Default name of the bucket as users should enter it themselves.
+- Action input `release`.
 
 ## [0.11.0] - 2021-04-25
 

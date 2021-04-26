@@ -23,9 +23,6 @@ inputs:
     description: 'Whether or not the file which contains the next number for the next development version should be uploaded to S3 so that the next build can use it.'
     required: true
     default: true
-  release:
-    description: 'Whether or not this build is a release, i.e. the remote development version number is not checked for and the next development version is not uploaded to the remote.'
-    required: false
 outputs:
   version:
     description: 'The full version number of the current build.'
