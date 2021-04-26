@@ -45,13 +45,14 @@ export const run = async (
       core.setOutput('version', projectVersion);
       core.setOutput('revision-number', 0);
     } else {
+      const service = core.getInput('service');
       const bucketName = core.getInput('bucket');
       const pathInput = core.getInput('path');
       const suffix = core.getInput('suffix');
       const suffixVariable = core.getInput('suffix-variable');
       const filePath = pathInput === '' ? await bucket.getDefaultPath(projectVersion) : pathInput;
 
-      const versionNumber = await version.resolveDevelopmentVersion(bucketName, filePath);
+      const versionNumber = await version.resolveDevelopmentVersion(service, bucketName, filePath);
 
       core.info(`The development version number for the current run is ${versionNumber}`);
 
