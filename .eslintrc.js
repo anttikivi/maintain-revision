@@ -10,7 +10,6 @@ module.exports = {
   extends: [
     'airbnb',
     'airbnb-typescript',
-    'airbnb/hooks',
     'plugin:jest/recommended',
     'plugin:prettier/recommended',
     'prettier',
