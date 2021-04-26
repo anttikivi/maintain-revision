@@ -8,10 +8,18 @@ import * as core from '@actions/core';
 // TODO Catch errors and reject the promise if the function fails
 export const readVersion = async (filename: string): Promise<string> =>
   new Promise((resolve) => {
-    const jsonFilename: string = path.join(process.env.GITHUB_WORKSPACE as string, filename);
-    const { version } = JSON.parse(fs.readFileSync(jsonFilename, 'utf8'));
-    core.debug(`The version number field read from the package file is ${version}`);
-    resolve(version);
+    // const jsonFilename: string = path.resolve(process.env.GITHUB_WORKSPACE as string, ...filename.split('/'));
+    const jsonFilename: string = path.resolve(...filename.split('/'));
+
+    fs.readFile(jsonFilename, 'utf8', (err, data) => {
+      if (err) {
+        core.warning(err);
+      } else {
+        const { version } = JSON.parse(data);
+        core.debug(`The version number field read from the package file is ${version}`);
+        resolve(version);
+      }
+    });
   });
 
 export const writeVersion = async (

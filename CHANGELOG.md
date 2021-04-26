@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com), and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [0.12.1] - 2021-04-26
+
+### Added
+
+- Error logging when reading JSON files.
+
+### Changed
+
+- npm packages files to use the same logic as other JSON files.
+- JSON to use `resolve` to find the files.
+
 ## [0.12.0] - 2021-04-26
 
 ### Changed
