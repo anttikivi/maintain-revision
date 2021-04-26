@@ -2,12 +2,14 @@
 // Licensed under the MIT License
 
 import * as fs from 'fs';
+import * as path from 'path';
 import * as core from '@actions/core';
 
 // TODO Catch errors and reject the promise if the function fails
 export const readVersion = async (filename: string): Promise<string> =>
   new Promise((resolve) => {
-    const { version } = JSON.parse(fs.readFileSync(filename, 'utf8'));
+    const jsonFilename: string = path.join(process.env.GITHUB_WORKSPACE as string, filename);
+    const { version } = JSON.parse(fs.readFileSync(jsonFilename, 'utf8'));
     core.debug(`The version number field read from the package file is ${version}`);
     resolve(version);
   });
