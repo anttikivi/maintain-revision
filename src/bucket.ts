@@ -23,7 +23,7 @@ export const fileExists = async (
       Bucket: bucketName,
       Key: path,
     };
-    s3.headObject(params, (err, data) => {
+    s3.headObject(params, (err) => {
       if (err && err.code === 'NotFound') {
         core.debug(`File ${path} doesn't exist in bucket ${bucketName}`);
         // Return false as the file doesn't exist.
@@ -85,7 +85,7 @@ export const putFile = async (
       Key: path,
       Body: content,
     };
-    s3.putObject(params, (err, data) => {
+    s3.putObject(params, (err) => {
       if (err) {
         core.warning(
           `The upload of the file ${path} with the content ${content} failed: ${err.code}`,

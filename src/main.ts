@@ -8,9 +8,9 @@ import * as version from './version';
 
 const uploadDevelopmentVersion = async (
   bucketName: string,
-  path: string,
-  version: number,
-): Promise<void> => bucket.putFile(bucketName, path, String(version));
+  filePath: string,
+  versionNumber: number,
+): Promise<void> => bucket.putFile(bucketName, filePath, String(versionNumber));
 
 export const run = async (
   readVersion: Function,
@@ -28,9 +28,12 @@ export const run = async (
 
     core.debug(`The workspace of this run is ${workspace}`);
 
-    shouldDownload
-      ? core.debug('The revision number should be downloaded from the remote')
-      : core.debug("The revision number won't be downloaded from the remote");
+    if (shouldDownload) {
+      core.debug('The revision number should be downloaded from the remote');
+    } else {
+      core.debug("The revision number won't be downloaded from the remote");
+    }
+
     core.debug(`The manual revision number is set to ${manualRevisionNumber}`);
 
     const projectVersion = isNpm ? await readVersion() : await readVersion(versionFile);
@@ -109,7 +112,7 @@ export const upload = async () => {
   if (shouldUpload) {
     const bucketName = core.getInput('bucket');
     const filePath = core.getState('filePath');
-    const versionNumber = parseInt(core.getState('versionNumber'));
+    const versionNumber = parseInt(core.getState('versionNumber'), 10);
 
     uploadDevelopmentVersion(bucketName, filePath, versionNumber);
   } else {

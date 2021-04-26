@@ -32,9 +32,9 @@ export const writeVersion = async (
 ): Promise<void> =>
   new Promise((resolve) => {
     core.debug(`Going to read a file from ${filename}`);
-    fs.readFile(String(filename), 'utf8', (err, data) => {
-      if (err) {
-        core.warning(err);
+    fs.readFile(String(filename), 'utf8', (readError, data) => {
+      if (readError) {
+        core.warning(readError);
       } else if (variable) {
         core.debug('The suffix variable is set');
         const originalVariable = `${variable} = "-${originalSuffix}"`;
@@ -44,9 +44,9 @@ export const writeVersion = async (
         const result = data.replace(originalVariable, newVariable);
         core.debug(`The result is ${result}`);
         core.debug(`Going to write to ${filename}`);
-        fs.writeFile(String(filename), result, 'utf8', (err) => {
-          if (err) {
-            core.warning(err);
+        fs.writeFile(String(filename), result, 'utf8', (writeError) => {
+          if (writeError) {
+            core.warning(writeError);
           }
         });
       } else {
@@ -54,9 +54,9 @@ export const writeVersion = async (
         const result = data.replace(projectVersion, newVersion);
         core.debug(`The result is ${result}`);
         core.debug(`Going to write to ${filename}`);
-        fs.writeFile(String(filename), result, 'utf8', (err) => {
-          if (err) {
-            core.warning(err);
+        fs.writeFile(String(filename), result, 'utf8', (writeError) => {
+          if (writeError) {
+            core.warning(writeError);
           }
         });
       }

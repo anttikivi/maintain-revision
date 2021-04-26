@@ -5,7 +5,7 @@ import * as core from '@actions/core';
 import * as bucket from './bucket';
 
 export const resolveManualRevisionNumber = async (): Promise<number> =>
-  core.getInput('revision-number') ? parseInt(core.getInput('revision-number')) : 0;
+  core.getInput('revision-number') ? parseInt(core.getInput('revision-number'), 10) : 0;
 
 export const resolveDevelopmentVersion = async (
   bucketName: string,
@@ -14,7 +14,7 @@ export const resolveDevelopmentVersion = async (
   try {
     const download: boolean = core.getInput('download') === 'true';
     const manualNumberInput: string = core.getInput('revision-number');
-    const manualNumber: number = manualNumberInput ? parseInt(manualNumberInput) : 0;
+    const manualNumber: number = manualNumberInput ? parseInt(manualNumberInput, 10) : 0;
 
     if (!download || manualNumber) {
       return manualNumber;
@@ -24,13 +24,13 @@ export const resolveDevelopmentVersion = async (
 
     if (fileExists) {
       const numberString = await bucket.readFile(bucketName, path);
-      const versionNumber: number = parseInt(numberString) + 1;
+      const versionNumber: number = parseInt(numberString, 10) + 1;
       return versionNumber;
     }
 
     return 0;
   } catch (err) {
-    console.error(err);
+    core.error(err);
     return -1;
   }
 };
