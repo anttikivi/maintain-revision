@@ -2,7 +2,7 @@
 // Licensed under the MIT License
 
 import aws from 'aws-sdk';
-import core from '@actions/core';
+import * as core from '@actions/core';
 
 export const fileExists = async (
   bucketName: string,

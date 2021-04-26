@@ -1,7 +1,7 @@
 // Copyright (c) 2021 Visiosto oy
 // Licensed under the MIT License
 
-import core from '@actions/core';
+import * as core from '@actions/core';
 import * as bucket from './bucket';
 
 const resolveS3DevelopmentVersion = async (bucketName: string, path: string): Promise<number> => {

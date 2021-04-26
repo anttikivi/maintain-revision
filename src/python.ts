@@ -3,7 +3,7 @@
 
 import childProcess from 'child_process';
 import fs from 'fs';
-import core from '@actions/core';
+import * as core from '@actions/core';
 
 // TODO Catch errors and reject the promise if the function fails
 export const readVersion = async (filename: string): Promise<string> =>

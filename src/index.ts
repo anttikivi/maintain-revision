@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Antti Kivi
 // Licensed under the MIT License
 
-import core from '@actions/core';
+import * as core from '@actions/core';
 import * as json from './json-file';
 import { run } from './main';
 import * as npm from './npm';

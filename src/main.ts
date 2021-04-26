@@ -2,7 +2,7 @@
 // Licensed under the MIT License
 
 import path from 'path';
-import core from '@actions/core';
+import * as core from '@actions/core';
 import * as bucket from './bucket';
 import * as version from './version';
 
