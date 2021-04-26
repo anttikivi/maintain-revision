@@ -9,10 +9,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 ### Added
 
 - Option for selecting the storage service.
+- Unit tests for the files of the new project structure.
 
 ### Changed
 
 - Project structure to match the coding standards, i.e. each module contains exactly the import of its name.
+
+### Removed
+
+- General file tests.
 
 ## [0.12.1] - 2021-04-26
 
