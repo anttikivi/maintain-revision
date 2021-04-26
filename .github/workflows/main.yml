@@ -14,7 +14,7 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      AWS_DEFAULT_REGION: us-east-1
       LOCAL_VERSION_NUMBER_FILE: build_version.txt
 
     steps:
@@ -32,6 +32,19 @@ jobs:
       with:
         type: npm
 
+    - name: Get Yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Cache dependencies
+      uses: actions/cache@v2.1.5
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
     - name: Cache dependencies
       uses: actions/cache@v2.1.5
       with:
@@ -41,13 +54,13 @@ jobs:
           ${{ runner.os }}-node-
 
     - name: Install dependencies
-      run: npm install
+      run: yarn install --frozen-lockfile
 
     - name: Run checks
-      run: npm run ci-check
+      run: yarn ci-check
 
     - name: Compile
-      run: npm run build
+      run: yarn clean && yarn build
 
     - name: Upload build artefacts
       uses: actions/upload-artifact@v2.2.3

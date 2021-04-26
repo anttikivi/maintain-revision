@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## [Unreleased]
 
+### Changed
+
+- Project to use Yarn Classic instead of npm.
+
 ### Removed
 
 - Default name of the bucket as users should enter it themselves.
