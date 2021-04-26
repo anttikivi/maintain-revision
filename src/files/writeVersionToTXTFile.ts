@@ -1,28 +1,15 @@
-// Copyright (c) 2020 Antti Kivi
+// Copyright (c) 2021 Visiosto oy
 // Licensed under the MIT License
 
 import * as fs from 'fs';
 import * as core from '@actions/core';
 
-export const readVersion = async (filename: string): Promise<string> =>
-  new Promise((resolve, reject) => {
-    fs.readFile(filename, 'utf8', (err, data) => {
-      if (err) {
-        core.warning(err);
-        reject(err);
-      } else {
-        const result = data.trim();
-        resolve(result);
-      }
-    });
-  });
-
-export const writeVersion = async (
+export default async function writeVersionToTXTFile(
   projectVersion: string,
   newVersion: string,
   filename: string,
-): Promise<void> =>
-  new Promise((resolve) => {
+): Promise<void> {
+  return new Promise((resolve) => {
     fs.readFile(filename, 'utf8', (readError, data) => {
       if (readError) {
         core.warning(readError);
@@ -38,3 +25,4 @@ export const writeVersion = async (
     });
     resolve();
   });
+}

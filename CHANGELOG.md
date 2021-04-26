@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 - Option for selecting the storage service.
 
+### Changed
+
+- Project structure to match the coding standards, i.e. each module contains exactly the import of its name.
+
 ## [0.12.1] - 2021-04-26
 
 ### Added

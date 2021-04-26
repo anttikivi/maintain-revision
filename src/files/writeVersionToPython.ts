@@ -1,36 +1,18 @@
-// Copyright (c) 2021 Antti Kivi
+// Copyright (c) 2021 Visiosto oy
 // Licensed under the MIT License
 
-import childProcess from 'child_process';
 import fs from 'fs';
 import * as core from '@actions/core';
 
-// TODO Catch errors and reject the promise if the function fails
-export const readVersion = async (filename: string): Promise<string> =>
-  new Promise((resolve, reject) => {
-    const python = childProcess.spawn('python', [filename]);
-
-    python.stdout.on('data', (data) => {
-      const result = String.fromCharCode.apply(null, data).trim();
-      core.debug(`The version number field read from the Python file is ${result}`);
-      resolve(result);
-    });
-
-    python.stderr.on('data', (data) => {
-      core.warning(data);
-      reject(data);
-    });
-  });
-
-export const writeVersion = async (
+export default async function writeVersionToPython(
   projectVersion: string,
   newVersion: string,
   filename: string,
   originalSuffix: string = '',
   newSuffix: string = '',
   variable: string = '',
-): Promise<void> =>
-  new Promise((resolve) => {
+): Promise<void> {
+  return new Promise((resolve) => {
     core.debug(`Going to read a file from ${filename}`);
     fs.readFile(String(filename), 'utf8', (readError, data) => {
       if (readError) {
@@ -63,3 +45,4 @@ export const writeVersion = async (
     });
     resolve();
   });
+}

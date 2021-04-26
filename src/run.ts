@@ -1,28 +1,24 @@
-// Copyright (c) 2020 Antti Kivi
+// Copyright (c) 2021 Visiosto oy
 // Licensed under the MIT License
 
 import path from 'path';
 import * as core from '@actions/core';
-import * as bucket from './bucket';
-import * as version from './version';
 
-const uploadDevelopmentVersion = async (
-  bucketName: string,
-  filePath: string,
-  versionNumber: number,
-): Promise<void> => bucket.putFile(bucketName, filePath, String(versionNumber));
+import getDefaultRemotePath from './getDefaultRemotePath';
+import resolveDevelopmentVersion from './resolveDevelopmentVersion';
+import resolveManualRevisionNumber from './resolveManualRevisionNumber';
 
-export const run = async (
+export default async function run(
   readVersion: Function,
   writeVersion: Function,
   isNpm: boolean = false,
   isPython: boolean = false,
-): Promise<void> => {
+): Promise<void> {
   try {
     const workspace = process.env.GITHUB_WORKSPACE as string;
     const versionFile = path.join(workspace, core.getInput('file'));
     const shouldDownload = core.getInput('download') === 'true';
-    const manualRevisionNumber = version.resolveManualRevisionNumber();
+    const manualRevisionNumber = resolveManualRevisionNumber();
 
     core.info(`Reading local version data from ${versionFile}`);
 
@@ -50,9 +46,9 @@ export const run = async (
       const pathInput = core.getInput('path');
       const suffix = core.getInput('suffix');
       const suffixVariable = core.getInput('suffix-variable');
-      const filePath = pathInput === '' ? await bucket.getDefaultPath(projectVersion) : pathInput;
+      const filePath = pathInput === '' ? getDefaultRemotePath(projectVersion) : pathInput;
 
-      const versionNumber = await version.resolveDevelopmentVersion(service, bucketName, filePath);
+      const versionNumber = await resolveDevelopmentVersion(service, bucketName, filePath);
 
       core.info(`The development version number for the current run is ${versionNumber}`);
 
@@ -105,18 +101,4 @@ export const run = async (
     core.debug('There was an error in the run');
     core.setFailed(error.message);
   }
-};
-
-export const upload = async () => {
-  const shouldUpload = core.getInput('upload') === 'true';
-
-  if (shouldUpload) {
-    const bucketName = core.getInput('bucket');
-    const filePath = core.getState('filePath');
-    const versionNumber = parseInt(core.getState('versionNumber'), 10);
-
-    uploadDevelopmentVersion(bucketName, filePath, versionNumber);
-  } else {
-    core.info('Uploading the next development version number is disabled');
-  }
-};
+}

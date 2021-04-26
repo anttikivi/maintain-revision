@@ -1,6 +1,6 @@
-// Copyright (c) 2020 Antti Kivi
+// Copyright (c) 2021 Visiosto oy
 // Licensed under the MIT License
 
-import { upload } from '../main';
+import uploadRevision from './uploadRevision';
 
-upload();
+uploadRevision();
