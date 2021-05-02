@@ -2,16 +2,12 @@
 // Licensed under the MIT License
 
 import * as fs from 'fs';
-import * as path from 'path';
 import * as core from '@actions/core';
 
 // TODO Catch errors and reject the promise if the function fails
 export const readVersion = async (filename: string): Promise<string> =>
   new Promise((resolve) => {
-    // const jsonFilename: string = path.resolve(process.env.GITHUB_WORKSPACE as string, ...filename.split('/'));
-    const jsonFilename: string = path.resolve(...filename.split('/'));
-
-    fs.readFile(jsonFilename, 'utf8', (err, data) => {
+    fs.readFile(filename, 'utf8', (err, data) => {
       if (err) {
         core.warning(err);
       } else {

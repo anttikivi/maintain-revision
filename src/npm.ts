@@ -7,7 +7,8 @@ import * as core from '@actions/core';
 import * as jsonFile from './json-file';
 
 // TODO Catch errors and reject the promise if the function fails
-export const readVersion = async (): Promise<string> => jsonFile.readVersion('package.json');
+export const readVersion = async (): Promise<string> =>
+  jsonFile.readVersion(path.join(process.env.GITHUB_WORKSPACE as string, 'package.json'));
 
 export const writeVersion = async (packageVersion: string, newVersion: string): Promise<void> =>
   new Promise((resolve) => {
