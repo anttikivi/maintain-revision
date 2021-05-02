@@ -9,7 +9,7 @@ inputs:
   file:
     description: 'Relative path to the file that contains the version of the project.'
     required: false
-  storage:
+  service:
     description: 'The storage service that holds the bucket and remove revision files. The only possible value currently is s3.'
     required: true
     default: 's3'
