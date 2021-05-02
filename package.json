@@ -1,6 +1,6 @@
 {
   "name": "maintain-revision",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "description": "An action keeping a remote development version number up to date for projects",
   "main": "lib/index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/visiosto/maintain-revision.git"
   },
-  "author": "Antti Kivi",
+  "author": "Antti Kivi <antti.kivi@visiosto.fi>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/visiosto/maintain-revision/issues"
@@ -25,14 +25,14 @@
   "homepage": "https://github.com/visiosto/maintain-revision#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "aws-sdk": "^2.878.0"
+    "aws-sdk": "^2.897.0"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.22",
-    "@types/node": "^14.14.37",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.0.1",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.15.2",
-    "@vercel/ncc": "^0.28.3",
+    "@vercel/ncc": "^0.28.4",
     "eslint": "^7.21.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^12.3.1",
