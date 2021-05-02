@@ -2,7 +2,6 @@
 // Licensed under the MIT License
 
 import fs from 'fs';
-import path from 'path';
 import * as core from '@actions/core';
 
 // TODO Catch errors and reject the promise if the function fails
