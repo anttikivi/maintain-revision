@@ -8,9 +8,7 @@ import * as core from '@actions/core';
 // TODO Catch errors and reject the promise if the function fails
 export default async function readVersionFromJSON(filename: string): Promise<string> {
   return new Promise((resolve) => {
-    const jsonFilename: string = path.resolve(...filename.split('/'));
-
-    fs.readFile(jsonFilename, 'utf8', (err, data) => {
+    fs.readFile(filename, 'utf8', (err, data) => {
       if (err) {
         core.warning(err);
       } else {

@@ -19,6 +19,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 - General file tests.
 
+### Fixed
+
+- JSON files having the workspace twice in their path.
+
 ## [0.12.2] - 2021-05-02
 
 ### Fixed
