@@ -32,7 +32,7 @@
     "@types/node": "^15.0.1",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.15.2",
-    "@vercel/ncc": "^0.28.3",
+    "@vercel/ncc": "^0.28.4",
     "eslint": "^7.21.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^12.3.1",
