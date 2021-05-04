@@ -1,6 +1,7 @@
 // Copyright (c) 2021 Visiosto oy
 // Licensed under the MIT License
 
+import * as core from '@actions/core';
 import aws from 'aws-sdk';
 
 export default async function readS3File(
@@ -27,6 +28,7 @@ export default async function readS3File(
         // TODO
         reject(err.message);
       } else {
+        core.debug(`The unformatted revision number read from S3 is ${data.Body}`);
         resolve(data.Body!.toString());
       }
     });
