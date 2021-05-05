@@ -12,7 +12,6 @@ export default async function run(
   readVersion: Function,
   writeVersion: Function,
   isNpm: boolean = false,
-  isPython: boolean = false,
 ): Promise<void> {
   try {
     const workspace = process.env.GITHUB_WORKSPACE as string;
@@ -45,8 +44,13 @@ export default async function run(
       const bucketName = core.getInput('bucket');
       const pathInput = core.getInput('path');
       const suffix = core.getInput('suffix');
+      const variable = core.getInput('variable');
       const suffixVariable = core.getInput('suffix-variable');
       const filePath = pathInput === '' ? getDefaultRemotePath(projectVersion) : pathInput;
+
+      if (variable && suffixVariable) {
+        core.error('Both variable and suffix-variable cannot be set');
+      }
 
       const versionNumber = await resolveDevelopmentVersion(service, bucketName, filePath);
 
@@ -56,37 +60,40 @@ export default async function run(
 
       core.debug(`The version for this run is ${fullVersion}`);
 
-      if (isNpm) {
-        core.debug('Going to write the version to an npm project');
-        await writeVersion(projectVersion, fullVersion);
-      } else if (isPython) {
-        core.debug('Going to write the version to a Python project');
+      if (suffix) {
+        core.debug(`The version suffix is ${suffix}`);
 
-        if (suffix) {
-          core.debug(`The version suffix is ${suffix}`);
+        const newSuffix = `${suffix}.${versionNumber}`;
 
-          const newSuffix = `${suffix}.${versionNumber}`;
+        core.debug(`The new version suffix is ${newSuffix}`);
 
-          core.debug(`The new version suffix is ${newSuffix}`);
+        if (variable) {
+          core.debug(`The version variable is ${variable}`);
 
-          if (suffixVariable) {
-            core.debug(`The version suffix variable is ${suffixVariable}`);
+          await writeVersion(
+            projectVersion,
+            fullVersion,
+            versionFile,
+            suffix,
+            newSuffix,
+            variable,
+            '',
+          );
+        } else if (suffixVariable) {
+          core.debug(`The version suffix variable is ${suffixVariable}`);
 
-            await writeVersion(
-              projectVersion,
-              fullVersion,
-              versionFile,
-              suffix,
-              newSuffix,
-              suffixVariable,
-            );
-          } else {
-            await writeVersion(projectVersion, fullVersion, versionFile, suffix, newSuffix);
-          }
+          await writeVersion(
+            projectVersion,
+            fullVersion,
+            versionFile,
+            suffix,
+            newSuffix,
+            '',
+            suffixVariable,
+          );
         } else {
-          await writeVersion(projectVersion, fullVersion, versionFile);
+          await writeVersion(projectVersion, fullVersion, versionFile, suffix, newSuffix);
         }
-        await writeVersion(projectVersion, fullVersion);
       } else {
         await writeVersion(projectVersion, fullVersion, versionFile);
       }

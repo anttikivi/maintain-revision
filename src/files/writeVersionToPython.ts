@@ -17,7 +17,7 @@ export default async function writeVersionToPython(
     fs.readFile(String(filename), 'utf8', (readError, data) => {
       if (readError) {
         core.warning(readError);
-      } else if (variable) {
+      } else if (variable !== '') {
         core.debug('The suffix variable is set');
         const originalVariable = `${variable} = "-${originalSuffix}"`;
         core.debug(`The original variable statement is ${originalVariable}`);

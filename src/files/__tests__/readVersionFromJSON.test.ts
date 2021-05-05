@@ -8,4 +8,9 @@ describe('function to read version from JSON file', () => {
     const version = await readVersionFromJSON('test/file-test.json');
     expect(version).toBe('0.1.0-dev');
   });
+
+  it('correctly reads version from JSON file with different variable', async () => {
+    const version = await readVersionFromJSON('test/file-test.json', 'different_version');
+    expect(version).toBe('1.5.13-dev');
+  });
 });

@@ -22,7 +22,7 @@ if (projectType === 'json') {
 } else if (projectType === 'npm') {
   run(readVersionFromNPM, writeVersionToNPM, true);
 } else if (projectType === 'python') {
-  run(readVersionFromPython, writeVersionToPython, false, true);
+  run(readVersionFromPython, writeVersionToPython, false);
 } else {
   core.error(
     "The selected project type isn't supported. The currently supported types are 'npm', 'python', 'json', and 'txt'",
