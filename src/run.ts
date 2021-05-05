@@ -99,6 +99,10 @@ export default async function run(
 
       core.setOutput('version', fullVersion);
       core.setOutput('revision-number', versionNumber);
+
+      const writtenVersion = isNpm ? await readVersion() : await readVersion(versionFile, variable);
+
+      core.debug(`The version written to the version file is ${writtenVersion}`);
     }
   } catch (error) {
     core.debug('There was an error in the run');
