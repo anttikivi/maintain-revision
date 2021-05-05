@@ -16,6 +16,7 @@ export default async function readVersionFromJSON(
       } else if (variable !== '') {
         const jsonData = JSON.parse(data);
         core.debug(`The JSON data read from ${filename} is\n${JSON.stringify(jsonData, null, 2)}`);
+        core.debug(`The variable that will be used to read the value is ${variable}`);
         const versionData = jsonData[variable];
         core.debug(`The version number field read from the package file is ${versionData}`);
         resolve(versionData);
