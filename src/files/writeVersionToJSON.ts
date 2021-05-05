@@ -5,6 +5,7 @@ import fs from 'fs';
 import * as core from '@actions/core';
 
 export default async function writeVersionToJSON(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   packageVersion: string,
   newVersion: string,
   filename: string,
@@ -61,11 +62,13 @@ export default async function writeVersionToJSON(
             }
           });
         } else {
-          const result = data.replace(packageVersion, newVersion);
+          jsonData.version = newVersion;
 
-          console.log('Going to write the string', data);
+          const jsonString = JSON.stringify(jsonData);
 
-          fs.writeFile(filename, result, 'utf8', (writeError) => {
+          console.log('Going to write the string', jsonString);
+
+          fs.writeFile(filename, jsonData, 'utf8', (writeError) => {
             if (writeError) {
               core.warning(writeError);
             }
