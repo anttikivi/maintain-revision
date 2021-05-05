@@ -39,6 +39,8 @@ export default async function writeVersionToJSON(
 
           const jsonString = JSON.stringify(jsonData);
 
+          console.log('Going to write the string', jsonString);
+
           fs.writeFile(filename, jsonString, 'utf8', (writeError) => {
             if (writeError) {
               core.warning(writeError);
@@ -51,6 +53,8 @@ export default async function writeVersionToJSON(
 
           const jsonString = JSON.stringify(jsonData);
 
+          console.log('Going to write the string', jsonString);
+
           fs.writeFile(filename, jsonString, 'utf8', (writeError) => {
             if (writeError) {
               core.warning(writeError);
@@ -58,6 +62,8 @@ export default async function writeVersionToJSON(
           });
         } else {
           const result = data.replace(packageVersion, newVersion);
+
+          console.log('Going to write the string', data);
 
           fs.writeFile(filename, result, 'utf8', (writeError) => {
             if (writeError) {
