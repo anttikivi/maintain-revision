@@ -18,6 +18,7 @@ export default async function run(
     const versionFile = path.join(workspace, core.getInput('file'));
     const shouldDownload = core.getInput('download') === 'true';
     const manualRevisionNumber = resolveManualRevisionNumber();
+    const variable = core.getInput('variable');
 
     core.info(`Reading local version data from ${versionFile}`);
 
@@ -31,7 +32,7 @@ export default async function run(
 
     core.debug(`The manual revision number is set to ${manualRevisionNumber}`);
 
-    const projectVersion = isNpm ? await readVersion() : await readVersion(versionFile);
+    const projectVersion = isNpm ? await readVersion() : await readVersion(versionFile, variable);
 
     core.debug(`The package version is ${projectVersion}`);
 
@@ -44,7 +45,6 @@ export default async function run(
       const bucketName = core.getInput('bucket');
       const pathInput = core.getInput('path');
       const suffix = core.getInput('suffix');
-      const variable = core.getInput('variable');
       const suffixVariable = core.getInput('suffix-variable');
       const filePath = pathInput === '' ? getDefaultRemotePath(projectVersion) : pathInput;
 
