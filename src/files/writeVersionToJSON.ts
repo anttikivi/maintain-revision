@@ -23,6 +23,15 @@ export default async function writeVersionToJSON(
       } else {
         const jsonData = JSON.parse(data);
 
+        console.log(
+          'Going to write to the version',
+          newVersion,
+          'to',
+          filename,
+          'with the JSON data',
+          jsonData,
+        );
+
         if (variable !== '') {
           core.debug(`The version variable variable is set to ${variable}`);
 
