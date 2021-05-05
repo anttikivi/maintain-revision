@@ -60,42 +60,38 @@ export default async function run(
 
       core.debug(`The version for this run is ${fullVersion}`);
 
-      if (suffix) {
-        core.debug(`The version suffix is ${suffix}`);
+      core.debug(`The version suffix is ${suffix}`);
 
-        const newSuffix = `${suffix}.${versionNumber}`;
+      const newSuffix = `${suffix}.${versionNumber}`;
 
-        core.debug(`The new version suffix is ${newSuffix}`);
+      core.debug(`The new version suffix is ${newSuffix}`);
 
-        if (variable) {
-          core.debug(`The version variable is ${variable}`);
+      if (variable) {
+        core.debug(`The version variable is ${variable}`);
 
-          await writeVersion(
-            projectVersion,
-            fullVersion,
-            versionFile,
-            suffix,
-            newSuffix,
-            variable,
-            '',
-          );
-        } else if (suffixVariable) {
-          core.debug(`The version suffix variable is ${suffixVariable}`);
+        await writeVersion(
+          projectVersion,
+          fullVersion,
+          versionFile,
+          suffix,
+          newSuffix,
+          variable,
+          '',
+        );
+      } else if (suffixVariable) {
+        core.debug(`The version suffix variable is ${suffixVariable}`);
 
-          await writeVersion(
-            projectVersion,
-            fullVersion,
-            versionFile,
-            suffix,
-            newSuffix,
-            '',
-            suffixVariable,
-          );
-        } else {
-          await writeVersion(projectVersion, fullVersion, versionFile, suffix, newSuffix);
-        }
+        await writeVersion(
+          projectVersion,
+          fullVersion,
+          versionFile,
+          suffix,
+          newSuffix,
+          '',
+          suffixVariable,
+        );
       } else {
-        await writeVersion(projectVersion, fullVersion, versionFile);
+        await writeVersion(projectVersion, fullVersion, versionFile, suffix, newSuffix);
       }
 
       core.saveState('filePath', filePath);
