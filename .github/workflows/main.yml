@@ -37,9 +37,9 @@ jobs:
     - name: Replace the project’s version
       uses: visiosto/replace-value@develop
       with:
-        file: 'package.json'
-        replaced: '-dev"'
-        value: '-dev.${{ steps.version.outputs.revision-number }}"'
+        file: package.json
+        replaced: ${{ steps.version.outputs.package-version }}
+        value: ${{ steps.version.outputs.version }}
 
     - name: Get Yarn cache directory path
       id: yarn-cache-dir-path
@@ -95,9 +95,9 @@ jobs:
     - name: Replace the project’s version
       uses: visiosto/replace-value@develop
       with:
-        file: 'package.json'
-        replaced: '-dev"'
-        value: '-dev.${{ steps.version.outputs.revision-number }}"'
+        file: package.json
+        replaced: ${{ steps.version.outputs.package-version }}
+        value: ${{ steps.version.outputs.version }}
 
     - name: Get Yarn cache directory path
       id: yarn-cache-dir-path
