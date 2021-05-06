@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## [Unreleased]
 
+### Added
+
+- Input for manually setting the revision number.
+
+### Changed
+
+- Action to only read and create the version.
+
 ## [0.14.0] - 2021-05-02
 
 ### Changed

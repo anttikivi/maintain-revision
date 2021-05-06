@@ -8,21 +8,17 @@ import readVersionFromNPM from './files/readVersionFromNPM';
 import readVersionFromPython from './files/readVersionFromPython';
 import readVersionFromTXTFile from './files/readVersionFromTXTFile';
 import run from './run';
-import writeVersionToJSON from './files/writeVersionToJSON';
-import writeVersionToNPM from './files/writeVersionToNPM';
-import writeVersionToPython from './files/writeVersionToPython';
-import writeVersionToTXTFile from './files/writeVersionToTXTFile';
 
 const projectType = core.getInput('type');
 
 if (projectType === 'json') {
-  run(readVersionFromJSON, writeVersionToJSON);
+  run(readVersionFromJSON);
 } else if (projectType === 'txt') {
-  run(readVersionFromTXTFile, writeVersionToTXTFile);
+  run(readVersionFromTXTFile);
 } else if (projectType === 'npm') {
-  run(readVersionFromNPM, writeVersionToNPM, true);
+  run(readVersionFromNPM);
 } else if (projectType === 'python') {
-  run(readVersionFromPython, writeVersionToPython, false);
+  run(readVersionFromPython);
 } else {
   core.error(
     "The selected project type isn't supported. The currently supported types are 'npm', 'python', 'json', and 'txt'",
