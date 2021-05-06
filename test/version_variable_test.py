@@ -5,7 +5,7 @@
 _VERSION_SUFFIX = "-dev"
 
 
-__version__ = "{}{}".format(
-    ".".join([str(n) for n in (0, 3, 2)]),
+version_variable = "{}{}".format(
+    ".".join([str(n) for n in (1, 4, 5)]),
     _VERSION_SUFFIX
 )

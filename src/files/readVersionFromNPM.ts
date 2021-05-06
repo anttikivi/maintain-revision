@@ -8,5 +8,5 @@ import readVersionFromJSON from './readVersionFromJSON';
 // TODO Catch errors and reject the promise if the function fails
 export default async function readVersionFromNPM(): Promise<string> {
   const workspace = process.env.GITHUB_WORKSPACE as string;
-  return readVersionFromJSON(path.join(workspace, 'package.json'));
+  return readVersionFromJSON(path.join(workspace, 'package.json'), 'version');
 }

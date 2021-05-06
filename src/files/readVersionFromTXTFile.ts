@@ -4,15 +4,18 @@
 import * as fs from 'fs';
 import * as core from '@actions/core';
 
-export default async function readVersionFromTXTFile(filename: string): Promise<string> {
+// The text files cannot have
+export default async function readVersionFromTXTFile(filename: string, variable?: string): Promise<string> {
   return new Promise((resolve, reject) => {
     fs.readFile(filename, 'utf8', (err, data) => {
       if (err) {
         core.warning(err);
         reject(err);
       } else {
-        const result = data.trim();
-        resolve(result);
+        const versionData = data.trim();
+
+        core.debug(`The version field read from the text file is ${versionData}`);
+        resolve(versionData);
       }
     });
   });
