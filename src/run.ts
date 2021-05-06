@@ -55,6 +55,7 @@ export default async function run(readVersion: Function): Promise<void> {
     core.saveState('revisionNumber', revisionNumber);
 
     core.setOutput('version', fullVersion);
+    core.setOutput('package-version', projectVersion);
     core.setOutput('revision-number', revisionNumber);
   } catch (error) {
     core.debug('There was an error in the run');

@@ -36,6 +36,8 @@ inputs:
 outputs:
   version:
     description: 'The full version number of the current build.'
+  package-version:
+    description: 'The version that is in the data of the package manifest.'
   revision-number:
     description: 'The revision number used in this run.'
 runs:
