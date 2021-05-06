@@ -14,6 +14,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 - Action to only read and create the version.
 
+### Removed
+
+- Replacing the version in the original file.
+
 ## [0.14.0] - 2021-05-02
 
 ### Changed
