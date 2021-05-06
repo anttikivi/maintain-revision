@@ -11,14 +11,6 @@ export default async function resolveDevelopmentVersionFromS3(
   path: string,
 ): Promise<number> {
   try {
-    const download: boolean = core.getInput('download') === 'true';
-    const manualNumberInput: string = core.getInput('revision-number');
-    const manualNumber: number = manualNumberInput ? parseInt(manualNumberInput, 10) : 0;
-
-    if (!download || manualNumber) {
-      return manualNumber;
-    }
-
     const fileExists = await s3FileExists(bucketName, path);
 
     if (fileExists) {
@@ -27,7 +19,7 @@ export default async function resolveDevelopmentVersionFromS3(
       return versionNumber;
     }
 
-    return 0;
+    return -1;
   } catch (err) {
     core.error(err);
     return -1;
