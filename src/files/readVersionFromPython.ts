@@ -16,7 +16,7 @@ export default async function readVersionFromPython(
     python.stdout.on('data', (data) => {
       const versionData = String.fromCharCode.apply(null, data).trim();
 
-      core.debug(`The version field read from the package file is ${versionData}`);
+      core.debug(`The value of the version field read from the package file is ${versionData}`);
       resolve(versionData);
     });
 

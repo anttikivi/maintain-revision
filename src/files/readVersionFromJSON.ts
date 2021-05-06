@@ -16,12 +16,11 @@ export default async function readVersionFromJSON(
       } else {
         const jsonData = JSON.parse(data);
 
-        core.debug(`The JSON data read from ${filename} is\n${JSON.stringify(jsonData, null, 2)}`);
         core.debug(`The variable that will be used to read the value is ${variable}`);
 
         const versionData = jsonData[variable];
 
-        core.debug(`The version field read from the JSON file is ${versionData}`);
+        core.debug(`The value of the version field read from the JSON file is ${versionData}`);
         resolve(versionData);
       }
     });

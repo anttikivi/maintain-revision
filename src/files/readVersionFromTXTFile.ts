@@ -18,7 +18,7 @@ export default async function readVersionFromTXTFile(
       } else {
         const versionData = data.trim();
 
-        core.debug(`The version field read from the text file is ${versionData}`);
+        core.debug(`The value read from the text file is ${versionData}`);
         resolve(versionData);
       }
     });

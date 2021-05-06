@@ -23,7 +23,8 @@ export default async function readS3File(
       Bucket: bucketName,
       Key: path,
     };
-    core.debug(`Going to get the file ${params.Key} from the bucket ${params.Bucket}`);
+
+    core.debug(`Going to get the file '${params.Key}' from the bucket '${params.Bucket}'`);
     s3.getObject(params, (err, data) => {
       if (err) {
         // TODO
