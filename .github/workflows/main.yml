@@ -34,6 +34,14 @@ jobs:
         type: npm
         upload: false
 
+    - name: Replace the project’s version
+      id: version
+      uses: visiosto/replace-value@develop
+      with:
+        file: 'package.json'
+        replaced: '-dev"'
+        value: '-dev.${{ steps.version.outputs.revision-number }}"'
+
     - name: Get Yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -84,6 +92,14 @@ jobs:
       with:
         bucket: 'visiosto-workflows'
         type: npm
+
+    - name: Replace the project’s version
+      id: version
+      uses: visiosto/replace-value@develop
+      with:
+        file: 'package.json'
+        replaced: '-dev"'
+        value: '-dev.${{ steps.version.outputs.revision-number }}"'
 
     - name: Get Yarn cache directory path
       id: yarn-cache-dir-path
