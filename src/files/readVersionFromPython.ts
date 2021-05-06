@@ -2,24 +2,16 @@
 // Licensed under the MIT License
 
 import childProcess from 'child_process';
-import path from 'path';
 import * as core from '@actions/core';
 
 // TODO Catch errors and reject the promise if the function fails
 export default async function readVersionFromPython(
   filename: string,
-  variable: string = '__version__',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  variable?: string,
 ): Promise<string> {
   return new Promise((resolve, reject) => {
-    core.debug(`The variable that will be used to read the value is ${variable}`);
-
-    const workspace = process.env.GITHUB_WORKSPACE as string;
-
-    const python = childProcess.spawn('python', [
-      path.resolve('..', '..', 'util', 'read_version.py'),
-      path.join(workspace, filename),
-      variable,
-    ]);
+    const python = childProcess.spawn('python', [filename]);
 
     python.stdout.on('data', (data) => {
       const versionData = String.fromCharCode.apply(null, data).trim();
