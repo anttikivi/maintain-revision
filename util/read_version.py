@@ -10,10 +10,7 @@ import sys
 
 
 about = {}
-with open(os.path.join(
-        os.path.abspath(os.environ["GITHUB_WORKSPACE"]),
-        *sys.argv[1].split("/")
-)) as f:
+with open(sys.argv[1]) as f:
     exec(f.read(), about)
 
 

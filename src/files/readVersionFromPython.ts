@@ -13,9 +13,11 @@ export default async function readVersionFromPython(
   return new Promise((resolve, reject) => {
     core.debug(`The variable that will be used to read the value is ${variable}`);
 
+    const workspace = process.env.GITHUB_WORKSPACE as string;
+
     const python = childProcess.spawn('python', [
-      path.join(__filename, '..', '..', 'util', 'read_version.py'),
-      filename,
+      path.resolve('..', '..', 'util', 'read_version.py'),
+      path.join(workspace, filename),
       variable,
     ]);
 
