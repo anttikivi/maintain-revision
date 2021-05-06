@@ -8,6 +8,17 @@ import getDefaultRemotePath from './getDefaultRemotePath';
 import resolveDevelopmentVersion from './resolveDevelopmentVersion';
 
 export default async function run(readVersion: Function): Promise<void> {
+  core.debug('The inputs of the run are the following:');
+  core.debug(`type: ${core.getInput('type')}`);
+  core.debug(`file: ${core.getInput('file')}`);
+  core.debug(`service: ${core.getInput('service')}`);
+  core.debug(`bucket: ${core.getInput('bucket')}`);
+  core.debug(`path: ${core.getInput('path')}`);
+  core.debug(`upload: ${core.getInput('upload')}`);
+  core.debug(`variable: ${core.getInput('variable')}`);
+  core.debug(`suffix: ${core.getInput('suffix')}`);
+  core.debug(`revision-number: ${core.getInput('revision-number')}`);
+
   try {
     const workspace = process.env.GITHUB_WORKSPACE as string;
     const versionFile = path.join(workspace, core.getInput('file'));
