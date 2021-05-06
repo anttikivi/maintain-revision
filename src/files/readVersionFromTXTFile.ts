@@ -5,7 +5,11 @@ import * as fs from 'fs';
 import * as core from '@actions/core';
 
 // The text files cannot have
-export default async function readVersionFromTXTFile(filename: string, variable?: string): Promise<string> {
+export default async function readVersionFromTXTFile(
+  filename: string,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  variable?: string,
+): Promise<string> {
   return new Promise((resolve, reject) => {
     fs.readFile(filename, 'utf8', (err, data) => {
       if (err) {
