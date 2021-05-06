@@ -2,14 +2,14 @@
 
 ![Main workflow](https://github.com/visiosto/maintain-revision/workflows/Main%20workflow/badge.svg)
 
-Maintain Revision is a GitHub Actions action for keeping the remote development version numbers of projects up to date. It sets the version for the current run of the project on GitHub Actions by reading the last development version number from S3 and uploads the new development version to the same S3 bucket.
+Maintain Revision is a GitHub Actions action for keeping the remote development version numbers of projects up to date. It creates the version for the current run of the project on GitHub Actions by reading the last development version number from S3 and uploads the new development version to the same S3 bucket.
 
 ## Usage
 
 You can use the latest version of this action by adding the following step to your workflow.
 
 ```yml
-uses: visiosto/maintain-revision@v0.12.1
+uses: visiosto/maintain-revision@v0.15.0
 ```
 
 See the [documentation for GitHub Actions](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsuses) for more information on how to use actions in your workflows.

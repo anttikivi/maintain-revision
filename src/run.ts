@@ -6,97 +6,57 @@ import * as core from '@actions/core';
 
 import getDefaultRemotePath from './getDefaultRemotePath';
 import resolveDevelopmentVersion from './resolveDevelopmentVersion';
-import resolveManualRevisionNumber from './resolveManualRevisionNumber';
 
-export default async function run(
-  readVersion: Function,
-  writeVersion: Function,
-  isNpm: boolean = false,
-  isPython: boolean = false,
-): Promise<void> {
+export default async function run(readVersion: Function): Promise<void> {
+  core.debug('The inputs of the run are the following:');
+  core.debug(`type: ${core.getInput('type')}`);
+  core.debug(`file: ${core.getInput('file')}`);
+  core.debug(`service: ${core.getInput('service')}`);
+  core.debug(`bucket: ${core.getInput('bucket')}`);
+  core.debug(`path: ${core.getInput('path')}`);
+  core.debug(`upload: ${core.getInput('upload')}`);
+  core.debug(`variable: ${core.getInput('variable')}`);
+  core.debug(`suffix: ${core.getInput('suffix')}`);
+  core.debug(`revision-number: ${core.getInput('revision-number')}`);
+
   try {
     const workspace = process.env.GITHUB_WORKSPACE as string;
     const versionFile = path.join(workspace, core.getInput('file'));
-    const shouldDownload = core.getInput('download') === 'true';
-    const manualRevisionNumber = resolveManualRevisionNumber();
-
-    core.info(`Reading local version data from ${versionFile}`);
+    const versionVariable = core.getInput('variable');
 
     core.debug(`The workspace of this run is ${workspace}`);
+    core.info(`Reading local version data from ${versionFile}`);
 
-    if (shouldDownload) {
-      core.debug('The revision number should be downloaded from the remote');
-    } else {
-      core.debug("The revision number won't be downloaded from the remote");
-    }
-
-    core.debug(`The manual revision number is set to ${manualRevisionNumber}`);
-
-    const projectVersion = isNpm ? await readVersion() : await readVersion(versionFile);
+    const projectVersion = await readVersion(versionFile, versionVariable);
 
     core.debug(`The package version is ${projectVersion}`);
 
-    if (!shouldDownload && !manualRevisionNumber) {
-      core.debug("The revision number won't be set to the project");
-      core.setOutput('version', projectVersion);
-      core.setOutput('revision-number', 0);
-    } else {
-      const service = core.getInput('service');
-      const bucketName = core.getInput('bucket');
-      const pathInput = core.getInput('path');
-      const suffix = core.getInput('suffix');
-      const suffixVariable = core.getInput('suffix-variable');
-      const filePath = pathInput === '' ? getDefaultRemotePath(projectVersion) : pathInput;
+    const service = core.getInput('service');
+    const bucketName = core.getInput('bucket');
+    const pathInput = core.getInput('path');
+    const filePath = pathInput === '' ? getDefaultRemotePath(projectVersion) : pathInput;
+    const revisionNumber: number =
+      core.getInput('revision-number') === ''
+        ? await resolveDevelopmentVersion(service, bucketName, filePath)
+        : parseInt(core.getInput('revision-number'), 10);
 
-      const versionNumber = await resolveDevelopmentVersion(service, bucketName, filePath);
+    core.info(`The revision number for the current run is ${revisionNumber}`);
 
-      core.info(`The development version number for the current run is ${versionNumber}`);
+    const suffix = core.getInput('suffix');
 
-      const fullVersion: string = projectVersion.replace('-dev', `-dev.${versionNumber}`);
+    const fullVersion: string =
+      revisionNumber === -1
+        ? projectVersion
+        : projectVersion.replace(`-${suffix}`, `-${suffix}.${revisionNumber}`);
 
-      core.debug(`The version for this run is ${fullVersion}`);
+    core.debug(`The full version for this run is ${fullVersion}`);
 
-      if (isNpm) {
-        core.debug('Going to write the version to an npm project');
-        await writeVersion(projectVersion, fullVersion);
-      } else if (isPython) {
-        core.debug('Going to write the version to a Python project');
+    core.saveState('filePath', filePath);
+    core.saveState('revisionNumber', revisionNumber);
 
-        if (suffix) {
-          core.debug(`The version suffix is ${suffix}`);
-
-          const newSuffix = `${suffix}.${versionNumber}`;
-
-          core.debug(`The new version suffix is ${newSuffix}`);
-
-          if (suffixVariable) {
-            core.debug(`The version suffix variable is ${suffixVariable}`);
-
-            await writeVersion(
-              projectVersion,
-              fullVersion,
-              versionFile,
-              suffix,
-              newSuffix,
-              suffixVariable,
-            );
-          } else {
-            await writeVersion(projectVersion, fullVersion, versionFile, suffix, newSuffix);
-          }
-        } else {
-          await writeVersion(projectVersion, fullVersion, versionFile);
-        }
-        await writeVersion(projectVersion, fullVersion);
-      } else {
-        await writeVersion(projectVersion, fullVersion, versionFile);
-      }
-
-      core.saveState('filePath', filePath);
-      core.saveState('versionNumber', versionNumber);
-
-      core.setOutput('version', fullVersion);
-      core.setOutput('revision-number', versionNumber);
-    }
+    core.setOutput('version', fullVersion);
+    core.setOutput('package-version', projectVersion);
+    core.setOutput('revision-number', revisionNumber);
   } catch (error) {
     core.debug('There was an error in the run');
     core.setFailed(error.message);

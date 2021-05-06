@@ -5,15 +5,23 @@ import fs from 'fs';
 import * as core from '@actions/core';
 
 // TODO Catch errors and reject the promise if the function fails
-export default async function readVersionFromJSON(filename: string): Promise<string> {
+export default async function readVersionFromJSON(
+  filename: string,
+  variable: string = 'version',
+): Promise<string> {
   return new Promise((resolve) => {
     fs.readFile(filename, 'utf8', (err, data) => {
       if (err) {
         core.warning(err);
       } else {
-        const { version } = JSON.parse(data);
-        core.debug(`The version number field read from the package file is ${version}`);
-        resolve(version);
+        const jsonData = JSON.parse(data);
+
+        core.debug(`The variable that will be used to read the value is ${variable}`);
+
+        const versionData = jsonData[variable];
+
+        core.debug(`The value of the version field read from the JSON file is ${versionData}`);
+        resolve(versionData);
       }
     });
   });

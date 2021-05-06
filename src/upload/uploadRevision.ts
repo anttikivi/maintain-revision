@@ -12,7 +12,7 @@ export default async function uploadRevision() {
     const service = core.getInput('service');
     const bucketName = core.getInput('bucket');
     const filePath = core.getState('filePath');
-    const versionNumber = parseInt(core.getState('versionNumber'), 10);
+    const versionNumber = parseInt(core.getState('revisionNumber'), 10);
 
     uploadDevelopmentVersionToRemote(service, bucketName, filePath, versionNumber);
   } else {

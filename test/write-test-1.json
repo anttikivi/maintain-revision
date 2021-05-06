@@ -1,7 +1,6 @@
 {
   "name": "test-package",
-  "version": "0.1.0-dev",
-  "different_version": "1.5.13-dev",
+  "version": "0.2.0-dev",
   "scripts": {
     "build": "nothing"
   },
