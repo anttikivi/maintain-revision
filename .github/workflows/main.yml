@@ -28,9 +28,9 @@ jobs:
 
     - name: Determine the project’s version
       id: version
-      uses: visiosto/maintain-revision@develop
+      uses: visiosto/maintain-revision@v0.15.0
       with:
-        bucket: 'visiosto-workflows'
+        bucket: visiosto-workflows
         type: npm
         upload: false
 
@@ -87,9 +87,9 @@ jobs:
 
     - name: Determine the project’s version
       id: version
-      uses: visiosto/maintain-revision@develop
+      uses: visiosto/maintain-revision@v0.15.0
       with:
-        bucket: 'visiosto-workflows'
+        bucket: visiosto-workflows
         type: npm
 
     - name: Replace the project’s version
