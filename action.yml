@@ -31,7 +31,7 @@ inputs:
     required: true
     default: 'dev'
   revision-number:
-    description: 'The revision number to be appended to the version manually, used instead of the number that would be downloaded. The revision number won\'t be added to the project version if this is set to -1.'
+    description: 'The revision number to be appended to the version manually, used instead of the number that would be downloaded. The revision number is not added to the project version if this is set to -1.'
     required: false
 outputs:
   version:
