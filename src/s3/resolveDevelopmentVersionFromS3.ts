@@ -19,7 +19,8 @@ export default async function resolveDevelopmentVersionFromS3(
       return versionNumber;
     }
 
-    return -1;
+    const versionNumber: number = 1;
+    return versionNumber;
   } catch (err) {
     core.error(err);
     return -1;
