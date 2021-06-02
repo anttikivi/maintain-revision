@@ -1,6 +1,6 @@
 {
   "name": "maintain-revision",
-  "version": "0.16.0",
+  "version": "0.17.0-dev",
   "description": "An action keeping a remote development version number up to date for projects",
   "main": "lib/index.js",
   "scripts": {
