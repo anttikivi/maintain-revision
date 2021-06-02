@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ## [Unreleased]
 
+### Changed
+
+- Version number read from S3 to be `1` if the version file isn’t found.
+
 ### Fixed
 
 - Replacement of the hyphens with underscores in the name of the repository as before only the first hyphen was replaced.
