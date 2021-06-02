@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 
 ### Changed
 
-- Version number read from S3 to be `1` if the version file isn’t found.
+- Revision number read from S3 to be `1` if the file isn’t found.
 
 ### Fixed
 
